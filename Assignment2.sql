@@ -37,6 +37,63 @@ INSERT INTO CUSTOMER (CustomerId, FirstName, LastName, Address, City, Country, P
 
 ------------------------2.4 UPDATE
 --Task – Update Aaron Mitchell in Customer table to Robert Walter
+-- id = 32
+SELECT CUSTOMERID FROM CUSTOMER
+  WHERE FIRSTNAME = 'Aaron' AND LASTNAME = 'Mitchell';    -- Confirm unique name
+UPDATE CUSTOMER
+  SET FIRSTNAME = 'Robert', LASTNAME = 'Walter'
+  WHERE FIRSTNAME = 'Aaron' AND LASTNAME = 'Mitchell';
+--Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
+UPDATE ARTIST
+  SET NAME = 'CCR'
+  WHERE NAME = 'Creedence Clearwater Revival';
+  
+------------------------2.5 LIKE
+--Task – Select all invoices with a billing address like “T%”
+SELECT * FROM INVOICE
+  WHERE BILLINGADDRESS LIKE 'T%';
+
+------------------------2.6 BETWEEN
+--Task – Select all invoices that have a total between 15 and 50
+SELECT * FROM INVOICE
+  WHERE TOTAL >= 15 AND TOTAL <= 50;
+--Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
+SELECT * FROM EMPLOYEE;
+SELECT * FROM EMPLOYEE
+  WHERE HIREDATE > TO_DATE('2003-6-1 00:00:00','yyyy-mm-dd hh24:mi:ss') AND 
+    HIREDATE < TO_DATE('2004-3-1 00:00:00','yyyy-mm-dd hh24:mi:ss');
+    
+------------------------2.7 DELETE
+--Task – Delete a record in Customer table where the name is Robert Walter (There may 
+-- be constraints that rely on this, find out how to resolve them).
+SELECT * FROM INVOICELINE
+  WHERE INVOICEID IN ( SELECT INVOICEID FROM INVOICE
+                        WHERE CUSTOMERID = 32  );
+DELETE FROM INVOICELINE
+  WHERE INVOICEID IN ( SELECT INVOICEID FROM INVOICE
+                        WHERE CUSTOMERID = 32  );
+DELETE FROM INVOICE
+  WHERE CUSTOMERID = 32;
+DELETE FROM CUSTOMER
+  WHERE CUSTOMERID = 32;
+SELECT * FROM CUSTOMER;
+
+------------------------3.0 SQL Functions
+
+------------------------3.1 System Defined Functions
+--Task – Create a function that returns the current time.
+
+
+
+--Task – create a function that returns the length of a mediatype from the mediatype table
+
+
+
+  
+
+
+
+
 
 
 
