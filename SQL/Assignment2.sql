@@ -82,14 +82,32 @@ SELECT * FROM CUSTOMER;
 
 ------------------------3.1 System Defined Functions
 --Task – Create a function that returns the current time.
-
-
-
+alter session set NLS_DATE_FORMAT= 'HH:MIpm';
+select sysdate from dual;
 --Task – create a function that returns the length of a mediatype from the mediatype table
+SELECT * FROM MEDIATYPE;
+SELECT LENGTH((SELECT NAME FROM MEDIATYPE WHERE MEDIATYPEID =1)) "Media name length" from dual;
 
+------------------------3.2 System Defined Aggregate Functions
+--Task – Create a function that returns the average total of all invoices
+SELECT * FROM INVOICE;
+SELECT AVG(TOTAL) "Average Total" FROM INVOICE;
+--Task – Create a function that returns the most expensive track
+SELECT * FROM TRACK
+WHERE UNITPRICE = ( SELECT MAX(UNITPRICE) FROM TRACK);
 
+------------------------3.3 User Defined Functions
+--Task – Create a function that returns the average price of invoiceline items in the invoiceline table
+CREATE OR REPLACE FUNCTION avginvoiceline
 
+  RETURN INT
+BEGIN
+  RETURN AVG(TOTAL) "Average Total" FROM INVOICE
+END;
   
+SELECT * FROM INVOICELINE;
+
+
 
 
 

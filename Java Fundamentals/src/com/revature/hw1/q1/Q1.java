@@ -6,6 +6,15 @@ public class Q1 {
 	public static void main(String[] args) {
 		// Example int array
 		int[] array = {1,0,5,6,3,2,3,7,9,8,4};
+		
+		// Sort array and print
+		bubbleSort(array);
+		System.out.println(Arrays.toString(array));
+
+	}
+
+
+	static int[] bubbleSort(int[] array) {
 		// Declare useful variables
 		int temp;
 		boolean didSwap = true;
@@ -24,9 +33,9 @@ public class Q1 {
 				}			
 			}
 		}
-
-		// Print sorted Array
-		System.out.println(Arrays.toString(array));
+		
+		return array;
 	}
 
+	
 }

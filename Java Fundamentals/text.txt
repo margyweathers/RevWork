@@ -1,0 +1,1 @@
+Sample TextWe are now appending text to our file again
