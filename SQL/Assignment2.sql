@@ -98,14 +98,20 @@ WHERE UNITPRICE = ( SELECT MAX(UNITPRICE) FROM TRACK);
 
 ------------------------3.3 User Defined Functions
 --Task – Create a function that returns the average price of invoiceline items in the invoiceline table
-CREATE OR REPLACE FUNCTION avginvoiceline
-
-  RETURN INT
+CREATE OR REPLACE FUNCTION INVOICE_LINE_PRICE_AVG
+  RETURN NUMBER
+  IS --can be is or as--
+    AVERAGE NUMBER(3,2);
 BEGIN
-  RETURN AVG(TOTAL) "Average Total" FROM INVOICE
+  SELECT AVG(UNITPRICE) INTO AVERAGE FROM INVOICELINE;
+  RETURN AVERAGE;
 END;
-  
-SELECT * FROM INVOICELINE;
+/
+SELECT INVOICE_LINE_PRICE_AVG() FROM DUAL;
+
+------------------------3.4 User Defined Table Valued Functions
+--Task – Create a function that returns all employees who are born after 1968.
+
 
 
 
