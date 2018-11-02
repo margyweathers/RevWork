@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="BankingApp" id="991D0A1F-B617-5EB2-28C2-5C85C13431C9" mainViewID="A0D81D7E-DF7A-23BD-8664-34065466435E">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:22 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>3FD120B5-9F4E-6278-D5E2-746D192C8319</selectedRDBMSSite>
+<importConnectionStamps>
+<importConnectionStamp class="oracle.dbtools.crest.imports.DBConnectionStamp">
+<connName>BankingApp</connName>
+<connUrl>jdbc:oracle:thin:@bankingapp.c2el4howqpyb.us-east-1.rds.amazonaws.com:1521:ORCL</connUrl>
+<connUser>mweathers</connUser>
+<connType>1</connType>
+</importConnectionStamp>
+</importConnectionStamps>
+</relationalModel>

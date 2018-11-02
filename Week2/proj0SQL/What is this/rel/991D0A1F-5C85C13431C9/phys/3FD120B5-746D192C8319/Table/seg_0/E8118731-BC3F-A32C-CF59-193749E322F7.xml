@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ACCOUNT" directorySegmentName="seg_0" id="E8118731-BC3F-A32C-CF59-193749E322F7">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:22 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>1CCE3B8A-D2C9-9A0C-CB54-7F1DCB4B119D</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ACC_TYPE" id="17378258-81A5-CDCC-97C3-9BE402A75DD7">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ACC_ID" id="3EF47A75-C03C-4079-7A0E-4957C0A5EAD5">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NICKNAME" id="849CD6AA-95A8-1E6C-05EF-9E0A226B4BB0">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BALANCE" id="9601EC3A-FB29-FADB-2F83-992D62683B9A">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="INTEREST" id="AF4D8666-F2F1-B800-1E37-C41C0DA26FB5">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USER_ID" id="CAB26437-1B73-F2A2-2488-617EADEDF99C">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SET_ACCOUNTTOUSER_FK" id="7969F434-9572-2649-04E8-A6D3A7DB9489">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:15:41 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SET_ACCOUNTTOTYPE_FK" id="C84CFE65-C0F2-6B06-F7EC-C6EC691033AD">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:15:41 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ACCOUNT_PK" id="BD426CB7-5D51-7F55-7BE2-D06CA350E423">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<segment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<indexSegment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ACCOUNT_NICKNAME_UN" id="B70D3953-A4C2-8EC1-4EDD-373DE2748C00">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<segment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<indexSegment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

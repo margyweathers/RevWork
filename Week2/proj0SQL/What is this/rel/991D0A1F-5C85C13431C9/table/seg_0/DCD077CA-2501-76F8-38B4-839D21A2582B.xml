@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DCD077CA-2501-76F8-38B4-839D21A2582B" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="TRANSACTION_TYPE">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>TRANSACTION_TYPE</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TYPE_ID" id="4A341C05-DC98-DB53-F591-132D82791A79">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>TRANSACTION_TYPE</sourceObjSchema>
+<sourceObjName>TYPE_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TYPE_NAME" id="0FCA3B94-9BA4-4871-742C-32F39DE2C6FC">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>TRANSACTION_TYPE</sourceObjSchema>
+<sourceObjName>TYPE_NAME</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EBB1748A-5929-F6CC-4C29-27CA81C05528" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="TRANSACTION_TYPE_PK">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005152</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4A341C05-DC98-DB53-F591-132D82791A79"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="77D4ED2E-DA04-B956-32F0-4F1A64A5AB99" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="TRANSACTION_TYPE_TYPE_NAME_UN">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005153</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0FCA3B94-9BA4-4871-742C-32F39DE2C6FC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

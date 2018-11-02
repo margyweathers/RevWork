@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="21BAA192-3249-C69D-C2DF-938ABE4F6373" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="USR">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>USR</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USER_ID" id="24BD4555-F8FB-8154-2D05-B59B92323C68">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>USR</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USERNAME" id="93BBD502-31A6-54DE-0BC6-1208B5C4DDBD">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>USR</sourceObjSchema>
+<sourceObjName>USERNAME</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PW" id="C035C884-DEDA-4C23-89C1-9050681DB1A7">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>USR</sourceObjSchema>
+<sourceObjName>PW</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FIRSTNAME" id="A45627E6-9957-26F9-D708-B1EE128B3262">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>USR</sourceObjSchema>
+<sourceObjName>FIRSTNAME</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LASTNAME" id="C78775E9-25C5-030C-02AD-E98FDE7E352D">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>USR</sourceObjSchema>
+<sourceObjName>LASTNAME</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A6DAC078-8470-ED12-6E4F-43A99E650ABF" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="USR_PK">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005113</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="24BD4555-F8FB-8154-2D05-B59B92323C68"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C2FF31E9-EDD0-3C79-9B83-93FA21B56B8D" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="USR_USERNAME_UN">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005114</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93BBD502-31A6-54DE-0BC6-1208B5C4DDBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

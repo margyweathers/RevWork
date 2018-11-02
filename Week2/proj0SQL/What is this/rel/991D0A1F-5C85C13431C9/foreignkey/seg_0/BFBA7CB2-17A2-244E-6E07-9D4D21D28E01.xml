@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="BFBA7CB2-17A2-244E-6E07-9D4D21D28E01" containerWithKeyObject="232D80BC-6270-19BC-4443-577A7D4B93EE" localFKIndex="517729BB-5242-2DF8-4BEE-0BDA2704D782" name="SET_TRANSTOTYPE_FK">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SET_TRANSTOTYPE_FK</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:26 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>DCD077CA-2501-76F8-38B4-839D21A2582B</referredTableID>
+<keyObject>EBB1748A-5929-F6CC-4C29-27CA81C05528</keyObject>
+<referredKeyID>EBB1748A-5929-F6CC-4C29-27CA81C05528</referredKeyID>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

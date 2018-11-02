@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E8118731-BC3F-A32C-CF59-193749E322F7" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="ACCOUNT">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>ACCOUNT</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:22 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ACC_ID" id="3EF47A75-C03C-4079-7A0E-4957C0A5EAD5">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT</sourceObjSchema>
+<sourceObjName>ACC_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="CAB26437-1B73-F2A2-2488-617EADEDF99C">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BF398BD3-DD57-C4B6-BC05-DF89E30B020D" referredColumn="24BD4555-F8FB-8154-2D05-B59B92323C68"/>
+</associations>
+</Column>
+<Column name="ACC_TYPE" id="17378258-81A5-CDCC-97C3-9BE402A75DD7">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT</sourceObjSchema>
+<sourceObjName>ACC_TYPE</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="760F85F9-A919-451E-1E4E-5D43C7EFE6BC" referredColumn="80C0CDF7-0667-050F-A05E-21162A3F4828"/>
+</associations>
+</Column>
+<Column name="NICKNAME" id="849CD6AA-95A8-1E6C-05EF-9E0A226B4BB0">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT</sourceObjSchema>
+<sourceObjName>NICKNAME</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BALANCE" id="9601EC3A-FB29-FADB-2F83-992D62683B9A">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT</sourceObjSchema>
+<sourceObjName>BALANCE</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>13</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,13,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INTEREST" id="AF4D8666-F2F1-B800-1E37-C41C0DA26FB5">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT</sourceObjSchema>
+<sourceObjName>INTEREST</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<ownDataTypeParameters>,1,5</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BD426CB7-5D51-7F55-7BE2-D06CA350E423" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="ACCOUNT_PK">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005159</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3EF47A75-C03C-4079-7A0E-4957C0A5EAD5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B70D3953-A4C2-8EC1-4EDD-373DE2748C00" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="ACCOUNT_NICKNAME_UN">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005160</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="849CD6AA-95A8-1E6C-05EF-9E0A226B4BB0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C84CFE65-C0F2-6B06-F7EC-C6EC691033AD" name="SET_ACCOUNTTOTYPE_FK">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:15:41 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="17378258-81A5-CDCC-97C3-9BE402A75DD7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7969F434-9572-2649-04E8-A6D3A7DB9489" name="SET_ACCOUNTTOUSER_FK">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:15:41 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CAB26437-1B73-F2A2-2488-617EADEDF99C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

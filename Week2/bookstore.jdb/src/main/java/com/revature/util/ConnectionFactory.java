@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 	/*
-	 * Connections are a vital took in JDBC
+	 * Connections are a vital look in JDBC
 	 * We use the ConnectionFactory to establish a connection with the database
 	 * 
 	 * This will use a lazy singleton design pattern to return the same single connectionfactory 
@@ -25,7 +25,7 @@ public class ConnectionFactory {
 	
 	private static ConnectionFactory cf = null;
 	
-	private ConnectionFactory() {		}
+	private ConnectionFactory() {		}		// no args contructor
 	
 	public static synchronized ConnectionFactory getInstance() {
 		if (cf == null) cf = new ConnectionFactory();
@@ -34,7 +34,7 @@ public class ConnectionFactory {
 	
 	/*
 	 * Connection - one of the 4 core interfaces in the JDBC API
-	 * - manages out connection to (session with) the database
+	 * - manages our connection to (session with) the database
 	 * - allows us to execute SQL statements and return results
 	 * - has information about DB tables, stored procedures, and all other related db objects
 	 * 
@@ -47,8 +47,9 @@ public class ConnectionFactory {
 		try {
 			prop.load(new FileReader(path));
 			// The following line of code uses reflection and the .properties file in order to
-			//   instantiate our driver class lister in the file
+			//   instantiate our driver class listed in the file
 			Class.forName(prop.getProperty("driver"));
+			
 			/*
 			 * The DriverManager provides a basic service for managing a set of JDBC drivers. 
 			 * As part of its initialization, the DriverManager class will attempt to load the 

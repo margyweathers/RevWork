@@ -100,9 +100,12 @@ INSERT INTO BN_GENRE(NAME) VALUES('Other Genre');
 INSERT INTO BN_GENRE(NAME) VALUES('SAVE GENRE');
 commit;
 
-SELECT * FROM BN_GENRE ORDER BY NAME;
-SELECT * FROM BN_GENRE WHERE GENRE_ID = 2;
+---------- inserting into tables for testing...-----------------
+insert into bn_author(first_name, last_name, bio)
+values('JK', 'Rowling', 'Phenominal author of the reknowned Harry Potter series');
 
+insert into bn_book (isbn, author, title, price, genre_id)
+values('0000000001', 1, 'Harry Potter and the Sorcerers Stone', 14.99, 3);
 
 
 

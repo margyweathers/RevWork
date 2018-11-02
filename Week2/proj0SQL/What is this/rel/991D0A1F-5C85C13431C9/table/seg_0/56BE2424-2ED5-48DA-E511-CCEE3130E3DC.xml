@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="56BE2424-2ED5-48DA-E511-CCEE3130E3DC" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="ACCOUNT_TYPE">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>ACCOUNT_TYPE</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TYPE_ID" id="80C0CDF7-0667-050F-A05E-21162A3F4828">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT_TYPE</sourceObjSchema>
+<sourceObjName>TYPE_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TYPE_NAME" id="00808FA6-6BC9-6515-4F1E-3DE736F3B6C4">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>ACCOUNT_TYPE</sourceObjSchema>
+<sourceObjName>TYPE_NAME</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3843EFF8-19AE-3DCD-DEB1-2ED46418DD47" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="ACCOUNT_TYPE_PK">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005120</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="80C0CDF7-0667-050F-A05E-21162A3F4828"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BCAC3575-1170-73F4-6958-6CD812D91671" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="ACCOUNT_TYPE_TYPE_NAME_UN">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005121</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="00808FA6-6BC9-6515-4F1E-3DE736F3B6C4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

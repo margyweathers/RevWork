@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="USR" directorySegmentName="seg_0" id="21BAA192-3249-C69D-C2DF-938ABE4F6373">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>1CCE3B8A-D2C9-9A0C-CB54-7F1DCB4B119D</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="USER_ID" id="24BD4555-F8FB-8154-2D05-B59B92323C68">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USERNAME" id="93BBD502-31A6-54DE-0BC6-1208B5C4DDBD">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FIRSTNAME" id="A45627E6-9957-26F9-D708-B1EE128B3262">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PW" id="C035C884-DEDA-4C23-89C1-9050681DB1A7">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LASTNAME" id="C78775E9-25C5-030C-02AD-E98FDE7E352D">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="USR_PK" id="A6DAC078-8470-ED12-6E4F-43A99E650ABF">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<segment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<indexSegment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="USR_USERNAME_UN" id="C2FF31E9-EDD0-3C79-9B83-93FA21B56B8D">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<segment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<indexSegment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

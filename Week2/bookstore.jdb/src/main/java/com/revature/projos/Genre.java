@@ -5,7 +5,7 @@ public class Genre {
 	private int id;
 	private String name;
 	
-	public Genre() {}
+	public Genre() {}		// no args constructor
 
 	public Genre(String name) {
 		super();

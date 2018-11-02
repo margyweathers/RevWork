@@ -75,6 +75,7 @@ public class GenreDao implements DAO<Genre, Integer> {
 		return g;
 	}
 
+	
 	@Override
 	public Genre save(Genre obj) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
@@ -83,16 +84,23 @@ public class GenreDao implements DAO<Genre, Integer> {
 			// going to get the auto-generated keys via a prepared statement
 			String sql = "INSERT INTO BN_GENRE(NAME) VALUES(?)";
 			String[] keyNames = {"Genre_Id"}; 		// values we know are going to be auto-generated
-			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
+			
+			/* prepareStatement() creates a default PreparedStatement object capable of returning the auto-generated keys 
+			 * designated by the given array.This array contains the names of the columns in the target table 
+			 * that contain the auto-generated keys that should be returned.The driver will ignore the array 
+			 * if the SQL statement is not an INSERT statement
+			 */
+			PreparedStatement ps = conn.prepareStatement(sql, keyNames);	// so ps can now return the auto-generated keys
 			ps.setString(1, obj.getName());
 			
-			int numRows = ps.executeUpdate();
-			if (numRows > 0) {								// trying to handle errors...?
+			int numRows = ps.executeUpdate();	// executeUpdate() returns the row count for SQL Data Manipulation Language (DML) statements
+			if (numRows > 0) {								// making sure the sql statement returned something
 				ResultSet pk = ps.getGeneratedKeys();
 				while (pk.next()) {
 					obj.setId(pk.getInt(1));
 				}
 				conn.commit();
+
 			}		
 		} catch (SQLException e) {			
 			e.printStackTrace();

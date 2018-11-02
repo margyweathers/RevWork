@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="232D80BC-6270-19BC-4443-577A7D4B93EE" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="TRANSACTION">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>TRANSACTION</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TRANS_ID" id="9A22A916-8DA3-2A07-2C82-3045E63E2C9A">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>TRANSACTION</sourceObjSchema>
+<sourceObjName>TRANS_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="B6E5E966-539F-E1DA-3F76-861DC8CB055F">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>TRANSACTION</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DA3F3ED5-8202-9890-80EB-1AE32C120B69" referredColumn="24BD4555-F8FB-8154-2D05-B59B92323C68"/>
+</associations>
+</Column>
+<Column name="TRANS_TYPE" id="1001B564-61F3-1007-638C-62A73647476C">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>TRANSACTION</sourceObjSchema>
+<sourceObjName>TRANS_TYPE</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BFBA7CB2-17A2-244E-6E07-9D4D21D28E01" referredColumn="4A341C05-DC98-DB53-F591-132D82791A79"/>
+</associations>
+</Column>
+<Column name="AMOUNT" id="A04763E6-EAFE-A829-BBEA-FF0CE12D743A">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>TRANSACTION</sourceObjSchema>
+<sourceObjName>AMOUNT</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>13</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,13,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="89AB1932-3203-947D-3821-48ADADEFDE31" schemaObject="E4B0352A-EB4E-2260-8E6B-361222994FC5" name="TRANSACTION_PK">
+<sourceConnName>BankingApp</sourceConnName>
+<sourceObjSchema>MWEATHERS</sourceObjSchema>
+<sourceObjName>SYS_C005129</sourceObjName>
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9A22A916-8DA3-2A07-2C82-3045E63E2C9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="517729BB-5242-2DF8-4BEE-0BDA2704D782" name="SET_TRANSTOTYPE_FK">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:26 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1001B564-61F3-1007-638C-62A73647476C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B703641F-62FC-8B67-CB49-014A5F5A041D" name="SET_TRANSTOUSER_FK">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:26 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6E5E966-539F-E1DA-3F76-861DC8CB055F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

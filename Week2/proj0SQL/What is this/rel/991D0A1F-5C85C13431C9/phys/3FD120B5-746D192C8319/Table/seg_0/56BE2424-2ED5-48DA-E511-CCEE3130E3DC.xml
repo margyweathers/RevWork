@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ACCOUNT_TYPE" directorySegmentName="seg_0" id="56BE2424-2ED5-48DA-E511-CCEE3130E3DC">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:23 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>1CCE3B8A-D2C9-9A0C-CB54-7F1DCB4B119D</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="TYPE_NAME" id="00808FA6-6BC9-6515-4F1E-3DE736F3B6C4">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TYPE_ID" id="80C0CDF7-0667-050F-A05E-21162A3F4828">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:24 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ACCOUNT_TYPE_PK" id="3843EFF8-19AE-3DCD-DEB1-2ED46418DD47">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<segment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<indexSegment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ACCOUNT_TYPE_TYPE_NAME_UN" id="BCAC3575-1170-73F4-6958-6CD812D91671">
+<createdBy>Margy</createdBy>
+<createdTime>2018-11-01 13:12:25 UTC</createdTime>
+<ownerDesignName>What is this</ownerDesignName>
+<schemaObject>E4B0352A-EB4E-2260-8E6B-361222994FC5</schemaObject>
+<segment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</segment>
+<tableSpace>39549C58-25F5-72CB-632A-1575E1FFE3F6</tableSpace>
+<indexSegment>4031EA81-587D-65AC-5D9D-0909BFC7C3A8</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

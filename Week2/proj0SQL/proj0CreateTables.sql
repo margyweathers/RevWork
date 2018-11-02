@@ -37,7 +37,7 @@ CREATE TABLE TRANSACTION_TYPE(
 );
 --drop table transaction_type2;
 
---------------------------------Set Constraints---------------------------------
+------------------------Set Constraints------------------------
 
 ALTER TABLE ACCOUNT
 ADD CONSTRAINT set_accountToUser_fk
@@ -64,36 +64,5 @@ ADD CONSTRAINT set_transToType_fk
 --ALTER TABLE TRANSACTION DROP CONSTRAINT set_transToType_fk;
 --ALTER TABLE TRANSACTION DROP CONSTRAINT set_transToUSER_fk;
 
-
--------------------------------Create Sequences--------------------------------
-CREATE SEQUENCE USR_SEQ;
-CREATE SEQUENCE ACC_SEQ;
-CREATE SEQUENCE TRANS_SEQ;
-
-----------------------------Create Auto-gen Triggers----------------------------
-
-CREATE OR REPLACE TRIGGER USR_ID_TRIG
-BEFORE INSERT ON USR
-FOR EACH ROW
-BEGIN 
-    SELECT USR_SEQ.NEXTVAL INTO : NEW.USER_ID FROM DUAL;
-END;
-/
-
-CREATE OR REPLACE TRIGGER ACC_ID_TRIG
-BEFORE INSERT ON ACCOUNT
-FOR EACH ROW
-BEGIN 
-    SELECT ACC_SEQ.NEXTVAL INTO : NEW.ACC_ID FROM DUAL;
-END;
-/
-
-CREATE OR REPLACE TRIGGER TRANS_ID_TRIG
-BEFORE INSERT ON TRANSACTION
-FOR EACH ROW
-BEGIN 
-    SELECT TRANS_SEQ.NEXTVAL INTO : NEW.TRANS_ID FROM DUAL;
-END;
-/
-
+commit;
 
