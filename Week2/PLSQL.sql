@@ -75,6 +75,21 @@ EXECUTE DELETE_INVOICE(240);
 SELECT * FROM INVOICE WHERE INVOICEID = 240;
 SELECT * FROM INVOICELINE WHERE INVOICEID = 240;
 
+--Stored procedure to return all books
+create or replace procedure get_all_books
+(book_cursor out sys_refcursor)
+as
+begin
+open book_cursor for select * from bn_book;
+end;
+/
+
+
+
+
+
+
+
 
 
 
