@@ -19,10 +19,16 @@ public interface DAO<T, I extends Serializable> {
 		return true;
 	}
 	
+	// default User methods
 	default List<String> findAllUsernames(){
 		return null;
 	}
 	default T findByUsername(String username) {
+		return null;
+	}
+	
+	// default Account methods
+	default List<T> findByUserID(int id){
 		return null;
 	}
 }

@@ -6,11 +6,13 @@ import java.util.Scanner;
 
 import com.revature.bankingapp.pojos.Account;
 import com.revature.bankingapp.pojos.User;
+import com.revature.bankingapp.service.AccountService;
 import com.revature.bankingapp.service.UserService;
 
 public class Actions {
 
 	static UserService us = new UserService();
+	static AccountService as = new AccountService();
 
 	/**
 	 * Create a new user account with username, password, first name, and last name entered by the user
@@ -133,18 +135,40 @@ public class Actions {
 		in.close();
 		return user;
 	}
-	
+
 	public static void giveOptions(User user) {
-		List<Account> accounts = new ArrayList<Account>();
-		
-		System.out.println("Select a transacion:"
-				+ "\n[1] Withdrawal"
-				+ "\n[2] Deposit"
-				+ "\n[3] Transfer"
-				+ "\n[4] View Balance"
-				+ "\n[5] View All Transactions"
-				+ "\n[6] Create Bank Account"
-				+ "\n[7] Deactivate Account");
+		Scanner in = new Scanner(System.in);
+		String userInput;
+		int userId = user.getUsrId();
+		List<Account> accounts = as.getAccountsByUserID(userId);
+
+		// If user does not have any existing accounts
+		if (accounts == null) {
+			System.out.println("You don't have any active bank accounts. Would you like to create one? [y/n]");
+			while(in.hasNext()) {
+				userInput = in.nextLine();
+				if( (userInput.equalsIgnoreCase("n")) || (userInput.equalsIgnoreCase("no")) ) {
+					System.out.println("Okay, Goodbye!");
+					System.exit(0);
+				}
+				else if ( (userInput.equalsIgnoreCase("y")) || (userInput.equalsIgnoreCase("yes")) ) {
+					System.out.println("Let's create an account.");
+				}
+				else {
+					System.out.println("Please enter [y] or [n]");
+				}
+			}
+		}
+		else {
+			System.out.println("Select a transacion:"
+					+ "\n[1] Withdrawal"
+					+ "\n[2] Deposit"
+					+ "\n[3] Transfer"
+					+ "\n[4] View Balance"
+					+ "\n[5] View All Transactions"
+					+ "\n[6] Create Bank Account"
+					+ "\n[7] Deactivate Account");
+		}
 	}
 
 

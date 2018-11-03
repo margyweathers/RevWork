@@ -65,21 +65,4 @@ public class BankingApp {
 
 
 
-	static void login(Scanner in) {
-		System.out.println("Enter your username: ");
-		String username = null;
-		while(in.hasNext()) {
-			username = in.nextLine();
-			if (!Actions.userExists(username)) {
-				System.out.println("A user account with this username does not exist. Please enter an existing username: ");
-			}
-			else {
-				System.out.println("Username exists!");
-				break;
-			}
-		}
-	}
-
-
-
 }
