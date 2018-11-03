@@ -10,7 +10,10 @@ public class Account {
 	private String nickname;
 	private double balance;
 	private double interest;
+	private int active;
 
+	public Account() {}
+	
 	public Account(int accId, int usrId, int accType, String nickname, double balance) {
 		super();
 		this.accId = accId;
@@ -22,7 +25,8 @@ public class Account {
 		else if (accType == 3 && (balance >= 10000 && balance <= 49999)) interest = .00120; 
 		else if (accType == 3 && (balance >= 50000 && balance <= 99999)) interest = .00129;
 		else if (accType == 3 && (balance >= 100_000 && balance <= 249_000)) interest = .00137;
-		else if (accType == 3 && (balance >= 250_000)) interest = .00146; 	
+		else if (accType == 3 && (balance >= 250_000)) interest = .00146;
+		setActive(1);
 	}
 
 	public double withraw(double amount) throws InsufficientFundsException {
@@ -107,9 +111,16 @@ public class Account {
 	public void setInterest(double interest) {
 		this.interest = interest;
 	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
 	
 	
-	
-	
+
 	
 }

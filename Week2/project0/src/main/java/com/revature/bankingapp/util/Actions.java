@@ -1,10 +1,10 @@
 package com.revature.bankingapp.util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revature.bankingapp.pojos.Account;
 import com.revature.bankingapp.pojos.User;
 import com.revature.bankingapp.service.UserService;
 
@@ -85,6 +85,69 @@ public class Actions {
 		in.close();
 		return new User(username, password, first, last);			
 	}
+
+	/**
+	 *
+	 * @param username
+	 * @return True if the user exists in the database
+	 */
+	public static boolean userExists(String username) {
+		List<String> usernames = us.getAllUsernames();
+		if (usernames.contains(username)) return true;
+		else return false;
+	}
+
+	/**
+	 * Prompts the user to login
+	 */
+	public static User login() {
+		User user = new User();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter your username: ");
+		String username = null;
+		while(in.hasNextLine()) {
+			username = in.nextLine();
+			boolean exists = Actions.userExists(username);					
+			if (exists == false) {
+				System.out.println("A user account with this username does not exist. Please enter an existing username: ");
+			}
+			else if (exists == true) {
+				//Create User object from username and retrieve password
+				user = us.getUserByUsername(username);
+				String password = user.getPw();
+				String input;
+				System.out.println("Enter your password: ");
+				while (in.hasNextLine()) {
+					input = in.nextLine();
+					if (!input.equals(password)) {
+						System.out.println("You entered the wrong password. Please try again: ");
+					}
+					else {
+						System.out.println("Hello " + user.getFirst() + "!");
+						break;
+					}
+				}			
+				break;
+			}
+		}
+		in.close();
+		return user;
+	}
+	
+	public static void giveOptions(User user) {
+		List<Account> accounts = new ArrayList<Account>();
+		
+		System.out.println("Select a transacion:"
+				+ "\n[1] Withdrawal"
+				+ "\n[2] Deposit"
+				+ "\n[3] Transfer"
+				+ "\n[4] View Balance"
+				+ "\n[5] View All Transactions"
+				+ "\n[6] Create Bank Account"
+				+ "\n[7] Deactivate Account");
+	}
+
+
 
 
 

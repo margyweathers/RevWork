@@ -82,5 +82,27 @@ public class UserDao implements DAO<User, Integer>  {
 		}	
 		return usernames;
 	}
+	
+	public User findByUsername(String username) {
+		User u = null;
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "SELECT * FROM USR WHERE USERNAME = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				u = new User();
+				u.setUsrId(rs.getInt(1));
+				u.setUsername(username);
+				u.setPw(rs.getString(3));
+				u.setFirst(rs.getString(4));
+				u.setLast(rs.getString(5));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
 
 }

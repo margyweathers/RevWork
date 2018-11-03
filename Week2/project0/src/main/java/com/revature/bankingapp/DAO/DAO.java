@@ -22,4 +22,7 @@ public interface DAO<T, I extends Serializable> {
 	default List<String> findAllUsernames(){
 		return null;
 	}
+	default T findByUsername(String username) {
+		return null;
+	}
 }

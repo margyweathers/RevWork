@@ -1,9 +1,7 @@
 package com.revature.bankingapp.main;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.revature.bankingapp.DAO.UserDao;
 import com.revature.bankingapp.pojos.User;
 import com.revature.bankingapp.service.UserService;
 import com.revature.bankingapp.util.Actions;
@@ -27,13 +25,14 @@ public class BankingApp {
 		System.out.println("Welcome to your online banking application!\n"
 				+ "Do you have an existing user account? [y/n]" );
 		while(in.hasNext()) {
-			userInput = in.next();
+			userInput = in.nextLine();
+			// LOGIN
 			if ( (userInput.equalsIgnoreCase("y")) || (userInput.equalsIgnoreCase("yes")) ) {
-				// Go to login page
-				System.out.println("then login");
-				break;
+				User user = Actions.login();
+				Actions.giveOptions(user);
+				
 			}
-			
+
 			//CREATE USER
 			else if( (userInput.equalsIgnoreCase("n")) || (userInput.equalsIgnoreCase("no")) ) {
 				System.out.println("Would you like to create a new user account?");
@@ -60,8 +59,25 @@ public class BankingApp {
 				System.out.println("Please enter [y] or [n]");
 			}
 		}
-
 		in.close();
+	}
+
+
+
+
+	static void login(Scanner in) {
+		System.out.println("Enter your username: ");
+		String username = null;
+		while(in.hasNext()) {
+			username = in.nextLine();
+			if (!Actions.userExists(username)) {
+				System.out.println("A user account with this username does not exist. Please enter an existing username: ");
+			}
+			else {
+				System.out.println("Username exists!");
+				break;
+			}
+		}
 	}
 
 
