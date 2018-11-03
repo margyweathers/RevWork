@@ -18,4 +18,8 @@ public interface DAO<T, I extends Serializable> {
 	default boolean isUnique(T obj) {
 		return true;
 	}
+	
+	default List<String> findAllUsernames(){
+		return null;
+	}
 }

@@ -21,9 +21,6 @@ public class User {
 	}
 
 
-
-
-
 	public boolean changePw(String p) {
 		if(p.equals(pw)) {
 			System.out.println("You provided the same password");
@@ -33,7 +30,12 @@ public class User {
 		pw = p;
 		return true;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "{ID: " + usrId + ", Username: " + username + ", Password: " + pw
+				+ ", First: " + first + ", Last: " + last + "}\n";
+	}
 
 
 	// Getters and Setters
