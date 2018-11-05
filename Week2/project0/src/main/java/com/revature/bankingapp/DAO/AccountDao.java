@@ -68,8 +68,31 @@ public class AccountDao implements DAO<Account, Integer> {
 	}
 
 	@Override
-	public Account create(Account obj) {
-		// TODO Auto-generated method stub
+	public Account create(Account acc) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "INSERT INTO ACCOUNT (USER_ID, ACC_TYPE, NICKNAME, BALANCE, INTEREST, ACTIVE) VALUES(?, ?, ?, ?, ?, ?)";
+			String[] keyNames = {"ACC_ID"};
+			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
+			ps.setInt(1, acc.getUsrId());
+			ps.setInt(2, acc.getAccType());
+			ps.setString(3, acc.getNickname());
+			ps.setDouble(4, acc.getBalance());
+			ps.setDouble(5, acc.getInterest());
+			ps.setInt(6, acc.getActive());
+			
+			int numRows = ps.executeUpdate();
+			if (numRows > 0) {								// making sure the sql statement returned something
+				ResultSet pk = ps.getGeneratedKeys();		// primary keys
+				while (pk.next()) {
+					acc.setAccId(pk.getInt(1));
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 		return null;
 	}
 

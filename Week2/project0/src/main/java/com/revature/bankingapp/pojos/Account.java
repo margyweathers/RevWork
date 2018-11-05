@@ -14,9 +14,8 @@ public class Account {
 
 	public Account() {}
 	
-	public Account(int accId, int usrId, int accType, String nickname, double balance) {
+	public Account(int usrId, int accType, String nickname, double balance) {
 		super();
-		this.accId = accId;
 		this.usrId = usrId;
 		this.accType = accType;
 		this.nickname = nickname;

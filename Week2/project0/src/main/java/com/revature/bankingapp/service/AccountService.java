@@ -20,4 +20,9 @@ public class AccountService {
 		if (accounts.size() == 0) return null;
 		return accounts;
 	}
+	
+	public Account createAccount(Account acc) {
+		accountDao.create(acc);
+		return acc;
+	}
 }
