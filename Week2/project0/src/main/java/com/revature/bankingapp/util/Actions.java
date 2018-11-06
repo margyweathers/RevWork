@@ -192,22 +192,40 @@ public class Actions {
 					+ "\n[8] Exit Application");
 			int option = 0;
 			Account acc;
+			Account updatedAcc;
 			try {
 				option = in2.nextInt();
 				switch(option) {
-				case 1:
+				case 1: // withdraw
 					System.out.println("Withdraw from: ");
 					acc = chooseAccount(accounts);
-					Account updatedAcc = AccountTransactions.withdraw(acc);
+					updatedAcc = AccountTransactions.withdraw(acc);
 					as.updateAccount(updatedAcc);
 					giveOptions(user);
 					break;
-				case 2:
+				case 2: // deposit
 					System.out.println("Deposit to: ");
-				case 3:	
-				case 4:
+					acc = chooseAccount(accounts);
+					updatedAcc = AccountTransactions.deposit(acc);
+					as.updateAccount(updatedAcc);
+					giveOptions(user);
+					break;
+				case 3:	// transfer
+					System.out.println("Transfer to: ");
+					Account transferTo = chooseAccount(accounts);
+					System.out.println("Transfer from: ");
+					Account transferFrom = chooseAccount(accounts);
+					AccountTransactions.transfer(transferTo, transferFrom);
+					giveOptions(user);
+					break;
+				case 4: // view balance
 					System.out.println("View balance of: ");
+					acc = chooseAccount(accounts);
+					AccountTransactions.viewBalance(acc);
+					giveOptions(user);
+					break;
 				case 5:
+					break;
 				case 6:
 					Account newAcc = createAccount(user);
 					as.createAccount(newAcc);
@@ -216,6 +234,7 @@ public class Actions {
 					break;
 				case 7:
 					System.out.println("Which account would you like to permanantly deactivate?");
+					break;
 				case 8:
 					System.out.println("Goodbye!");
 					System.exit(0);
@@ -285,14 +304,14 @@ public class Actions {
 			choice = in.nextInt();
 			if(choice < 1 || choice > accounts.size()) {
 				System.out.println("Must enter a valid numerical choice");
-				chooseAccount(accounts);
+				acc = chooseAccount(accounts);
 			}
 			else {
 				acc = accounts.get(choice-1);
 			}			
 		} catch(InputMismatchException e) {
 			System.out.println("Must enter a valid numerical choice");
-			chooseAccount(accounts);		
+			acc = chooseAccount(accounts);		
 		}
 		return acc; 		
 	}
