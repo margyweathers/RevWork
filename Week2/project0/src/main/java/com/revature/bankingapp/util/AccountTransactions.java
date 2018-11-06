@@ -13,7 +13,10 @@ public class AccountTransactions {
 
 	static DecimalFormat df = new DecimalFormat("#.00"); 
 	static AccountService as = new AccountService();
-	
+
+	/**
+	 * Withdraw
+	 */
 	public static Account withdraw(Account acc) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -25,6 +28,7 @@ public class AccountTransactions {
 			amount = round(amount);
 			if (amount <= 0) {
 				System.out.println("You must enter a positive dollar amount.");
+				acc = withdraw(acc);
 			}
 			else {
 				double newBalance = acc.withraw(amount);
@@ -32,14 +36,18 @@ public class AccountTransactions {
 			}			
 		} catch(InputMismatchException e) {
 			System.out.println("Please enter a valid dollar and/or cents amount");
-			withdraw(acc);
+			acc = withdraw(acc);
 		} catch (InsufficientFundsException e) {
 			System.out.println("You do not have enough funds in your account for this transaction. Please try again.");
-			withdraw(acc);
+			acc = withdraw(acc);
 		}
 		return acc;
 	}
 
+	
+	/**
+	 * Deposit
+	 */
 	public static Account deposit(Account acc) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -51,7 +59,7 @@ public class AccountTransactions {
 			amount = round(amount);
 			if (amount <= 0) {
 				System.out.println("You must enter a positive dollar amount.");
-				deposit(acc);
+				acc = deposit(acc);
 			}
 			else {
 				double newBalance = acc.deposit(amount);
@@ -59,11 +67,15 @@ public class AccountTransactions {
 			}			
 		} catch(InputMismatchException e) {
 			System.out.println("Please enter a valid dollar and/or cents amount");
-			deposit(acc);
+			acc = deposit(acc);
 		}		
 		return acc;
 	}
+
 	
+	/**
+	 * Transfer
+	 */
 	public static void transfer(Account transTo, Account transFrom) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -91,15 +103,27 @@ public class AccountTransactions {
 			System.out.println("You do not have enough funds in your account for this transaction.");
 		}
 	}
-	
+
+
+	/**
+	 * View balance of account
+	 */
 	public static void viewBalance(Account acc) {
 		double balance = acc.getBalance();
 		System.out.println("Your current available balance is: $" + df.format(balance));
 	}
+
+	
+	public static Account deActivateAccount(Account acc) {
+		acc.setActive(0);	// 0 is inactive
+		return acc;
+	}
 	
 	
-	
-	
+
+	/**
+	 * Used to round to 2 decimal places
+	 */
 	public static double round(double value) {
 		BigDecimal bd = new BigDecimal(value);
 		bd = bd.setScale(2, RoundingMode.HALF_UP);

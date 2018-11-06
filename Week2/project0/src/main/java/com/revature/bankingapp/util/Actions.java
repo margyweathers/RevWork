@@ -181,7 +181,7 @@ public class Actions {
 		}
 		// Else, if user as at least 1 account, give them general options
 		else {
-			System.out.println("Select a transacion:"
+			System.out.println("\nSelect a transacion:"
 					+ "\n[1] Withdrawal"
 					+ "\n[2] Deposit"
 					+ "\n[3] Transfer"
@@ -211,6 +211,11 @@ public class Actions {
 					giveOptions(user);
 					break;
 				case 3:	// transfer
+					if (accounts.size() < 2) {
+						System.out.println("You need multiple bank accounts to complete a transfer.");
+						giveOptions(user);
+						break;
+					}
 					System.out.println("Transfer to: ");
 					Account transferTo = chooseAccount(accounts);
 					System.out.println("Transfer from: ");
@@ -226,16 +231,21 @@ public class Actions {
 					break;
 				case 5:
 					break;
-				case 6:
+				case 6: // create account
 					Account newAcc = createAccount(user);
 					as.createAccount(newAcc);
 					System.out.println("Congratulations, you made an account!");
 					giveOptions(user);
 					break;
-				case 7:
+				case 7: //deactivate account
 					System.out.println("Which account would you like to permanantly deactivate?");
+					acc = chooseAccount(accounts);
+					Account deactivated = AccountTransactions.deActivateAccount(acc);
+					as.updateAccount(deactivated);
+					System.out.println("Permantly deactivated '" + deactivated.getNickname() + "' Account." );
+					giveOptions(user);
 					break;
-				case 8:
+				case 8: // exit program
 					System.out.println("Goodbye!");
 					System.exit(0);
 				default:
@@ -268,16 +278,17 @@ public class Actions {
 			case 3: return createSpecificAccount(user, accType);
 			default:
 				System.out.println("Not a valid option");
-				createAccount(user); break;
+				account = createAccount(user);
+				break;
 			}
 		}catch(InputMismatchException e) {
 			System.out.println("Must enter a numerical choice [1][2][3]");
-			createAccount(user);		
+			account = createAccount(user);		
 		}	
 		return account;
 	}
 	
-	// Need to get nickname
+	// Get "nickname" for creating an account
 	public static Account createSpecificAccount(User user, int accType) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -287,11 +298,6 @@ public class Actions {
 	}
 
 	
-	/**
-	 * 
-	 * @param accounts
-	 * @return Account selected
-	 */
 	public static Account chooseAccount(List<Account> accounts) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -316,10 +322,5 @@ public class Actions {
 		return acc; 		
 	}
 	
-	
-
-
-
-
 
 }
