@@ -7,12 +7,14 @@ import java.util.Scanner;
 import com.revature.bankingapp.pojos.Account;
 import com.revature.bankingapp.pojos.User;
 import com.revature.bankingapp.service.AccountService;
+import com.revature.bankingapp.service.TransactionService;
 import com.revature.bankingapp.service.UserService;
 
 public class Actions {
 
 	static UserService us = new UserService();
 	static AccountService as = new AccountService();
+	static TransactionService ts = new TransactionService();
 
 	/**
 	 * Create a new user account with username, password, first name, and last name entered by the user
@@ -229,7 +231,9 @@ public class Actions {
 					AccountTransactions.viewBalance(acc);
 					giveOptions(user);
 					break;
-				case 5:
+				case 5: // view transactions
+					System.out.println(ts.getTransactionsbyUser(user.getUsrId(), 5));
+					giveOptions(user);
 					break;
 				case 6: // create account
 					Account newAcc = createAccount(user);
