@@ -198,7 +198,8 @@ public class Actions {
 				case 1:
 					System.out.println("Withdraw from: ");
 					acc = chooseAccount(accounts);
-					AccountTransactions.withdraw(acc);
+					Account updatedAcc = AccountTransactions.withdraw(acc);
+					as.updateAccount(updatedAcc);
 					giveOptions(user);
 					break;
 				case 2:

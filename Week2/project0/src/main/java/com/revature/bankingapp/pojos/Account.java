@@ -28,28 +28,28 @@ public class Account {
 		setActive(1);
 	}
 
-	public double withraw() throws InsufficientFundsException {
-		double amount = 0;
-		System.out.println("How much would you like to withdraw?");
-		
+	/**
+	 * 
+	 * @param withdrawal amount
+	 * @return NEW BALANCE
+	 * @throws InsufficientFundsException
+	 */
+	public double withraw(double amount) throws InsufficientFundsException {		
 		if (amount > balance) {
 			throw new InsufficientFundsException();
 		}
 		if (balance - amount < 10) {
 			System.out.println("Warning: You now have less than $10 in your account");
-		}
-		
+		}		
 		balance -= amount;
 		return balance;
 	}
 	
-	public double deposit(double amount) {
-		
+	public double deposit(double amount) {		
 		return balance += amount;
 	}
 	
-	public double checkBalance(Account a) {
-		
+	public double checkBalance(Account a) {	
 		return balance;
 	}
 	
