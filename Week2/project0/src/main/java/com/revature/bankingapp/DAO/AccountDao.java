@@ -53,7 +53,9 @@ public class AccountDao implements DAO<Account, Integer> {
 				temp.setBalance(rs.getDouble(5));
 				temp.setInterest(rs.getDouble(6));
 				temp.setActive(rs.getInt(7));
-				accounts.add(temp);
+				if (temp.getActive() == 1) {				// ONLY ADDING ACTIVE ACCOUNTS. Change later for
+					accounts.add(temp);					   	//	more dynamic functionality
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,15 +93,23 @@ public class AccountDao implements DAO<Account, Integer> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		return null;
+		return acc;
 	}
 
 	@Override
-	public Account update(Account obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account update(Account acc) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "UPDATE ACCOUNT SET BALANCE = ?, INTEREST = ?, ACTIVE = ? WHERE ACC_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, acc.getBalance());
+			ps.setDouble(2, acc.getInterest());
+			ps.setInt(3, acc.getActive());
+			ps.setInt(4, acc.getAccId());
+			ps.executeUpdate();			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return acc;
 	}
 
 

@@ -157,9 +157,8 @@ public class Actions {
 		Scanner in2 = new Scanner(System.in);
 		String userInput;
 		int userId = user.getUsrId();
-		List<Account> accounts = as.getAccountsByUserID(userId);
-
-		// If user does not have any existing accounts
+		List<Account> accounts = as.getAccountsByUserID(userId);			// ONLY RETRIEVES ACTIVE ACCOUNTS
+		// If user does not have any active  accounts
 		if (accounts == null) {
 			System.out.println("You don't have any active bank accounts. Would you like to create one? [y/n]");
 			while(in2.hasNextLine()) {
@@ -189,26 +188,43 @@ public class Actions {
 					+ "\n[4] View Balance"
 					+ "\n[5] View All Transactions"
 					+ "\n[6] Create Bank Account"
-					+ "\n[7] Deactivate Account");
+					+ "\n[7] Deactivate Account"
+					+ "\n[8] Exit Application");
 			int option = 0;
+			Account acc;
 			try {
 				option = in2.nextInt();
 				switch(option) {
-				case 1: System.out.println("From which account would you like to withdraw?");
-				case 2: System.out.println("To which account would you like to deposit?");
+				case 1:
+					System.out.println("Withdraw from: ");
+					acc = chooseAccount(accounts);
+					AccountTransactions.withdraw(acc);
+					giveOptions(user);
+					break;
+				case 2:
+					System.out.println("Deposit to: ");
 				case 3:	
 				case 4:
+					System.out.println("View balance of: ");
 				case 5:
 				case 6:
-				case 7: System.out.println("Which account would you like to permanantly deactivate?");
+					Account newAcc = createAccount(user);
+					as.createAccount(newAcc);
+					System.out.println("Congratulations, you made an account!");
+					giveOptions(user);
+					break;
+				case 7:
+					System.out.println("Which account would you like to permanantly deactivate?");
+				case 8:
+					System.out.println("Goodbye!");
+					System.exit(0);
 				default:
-					System.out.println("Not a valid number option");
+					System.out.println("Not a valid option");
 					giveOptions(user); break;
 				}
-			}catch(InputMismatchException e) {
+			} catch(InputMismatchException e) {
 				System.out.println("Must enter a numerical choice");
-				giveOptions(user);
-				
+				giveOptions(user);			
 			}
 		}
 		
@@ -249,9 +265,35 @@ public class Actions {
 		String nickname = in.nextLine();		
 		return new Account(user.getUsrId(), accType, nickname, 0.00);	// new account balance set to 0
 	}
+
 	
-	public static Account chooseAccount(User user) {
-		
+	/**
+	 * 
+	 * @param accounts
+	 * @return Account selected
+	 */
+	public static Account chooseAccount(List<Account> accounts) {
+		@SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in);
+		int choice;
+		Account acc = null;
+		for (int i = 1; i <= accounts.size(); i++) {
+			System.out.println("[" + i + "] " + accounts.get(i-1).toString());
+		}
+		try {
+			choice = in.nextInt();
+			if(choice < 1 || choice > accounts.size()) {
+				System.out.println("Must enter a valid numerical choice");
+				chooseAccount(accounts);
+			}
+			else {
+				acc = accounts.get(choice-1);
+			}			
+		} catch(InputMismatchException e) {
+			System.out.println("Must enter a valid numerical choice");
+			chooseAccount(accounts);		
+		}
+		return acc; 		
 	}
 	
 	

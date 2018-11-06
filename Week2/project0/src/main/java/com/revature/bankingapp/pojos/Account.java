@@ -28,7 +28,10 @@ public class Account {
 		setActive(1);
 	}
 
-	public double withraw(double amount) throws InsufficientFundsException {
+	public double withraw() throws InsufficientFundsException {
+		double amount = 0;
+		System.out.println("How much would you like to withdraw?");
+		
 		if (amount > balance) {
 			throw new InsufficientFundsException();
 		}
@@ -120,6 +123,19 @@ public class Account {
 	}
 	
 	
+	
+	@Override
+	public String toString() {
+		if (accType == 1) {
+			return "Checkings: " + nickname;
+		}
+		else if (accType == 2) {
+			return "Savings: " + nickname;
+		}
+		else {
+			return "Money Market: " + nickname;
+		}
+	}
 
 	
 }

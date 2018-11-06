@@ -25,4 +25,9 @@ public class AccountService {
 		accountDao.create(acc);
 		return acc;
 	}
+	
+	public Account updateAccount(Account acc) {
+		accountDao.update(acc);
+		return acc;
+	}
 }
