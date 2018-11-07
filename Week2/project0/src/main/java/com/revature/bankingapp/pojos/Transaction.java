@@ -14,8 +14,8 @@ public class Transaction {
 	private double amount;
 	private double newBal;
 	private String date;
-	static SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-	static DecimalFormat decf = new DecimalFormat("#.00"); 
+	static SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+	static DecimalFormat decf = new DecimalFormat("0.00"); 
 	
 	public Transaction() {}
 	
@@ -100,13 +100,13 @@ public class Transaction {
 	@Override
 	public String toString() {
 		if (transType == 1) {
-			return "Withdrew $" + decf.format(amount) + " from '" + accNickname + "'. Available balance: $" + decf.format(newBal);
+			return date + ": Withdrawal $(-" + decf.format(amount) + ")" + ". Available balance: $" + decf.format(newBal);
 			}
 		else if (transType == 2) {
-			return "Deposited $" + decf.format(amount) + " to '" + accNickname + "'. Available balance: $" + decf.format(newBal);
+			return date + ": Deposit $(+" + decf.format(amount) + ")" + ". Available balance: $" + decf.format(newBal);
 		}
 		else {
-			return "Transfered money.";
+			return date + ": Transfer $(" + decf.format(amount) + ")" + ". Available balance: $" + decf.format(newBal);
 		}
 		
 		

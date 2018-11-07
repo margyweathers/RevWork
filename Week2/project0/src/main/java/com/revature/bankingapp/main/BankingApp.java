@@ -13,8 +13,7 @@ public class BankingApp {
 	public static void main(String[] args) {
 
 		run();
-
-
+		
 	}
 
 	static void run() {		
@@ -35,7 +34,7 @@ public class BankingApp {
 
 			//CREATE USER
 			else if( (userInput.equalsIgnoreCase("n")) || (userInput.equalsIgnoreCase("no")) ) {
-				System.out.println("Would you like to create a new user account?");
+				System.out.println("Would you like to create a new user account? [y/n]");
 				while(in.hasNext()) {
 					userInput = in.next();
 					if( (userInput.equalsIgnoreCase("n")) || (userInput.equalsIgnoreCase("no")) ) {
@@ -47,6 +46,7 @@ public class BankingApp {
 						us.createUser(u);
 						System.out.println("Congratulations " + u.getFirst() + "! You created a new user account with username: "
 								+ u.getUsername());
+						Actions.giveOptions(u);
 						break;
 					}
 					else {
@@ -61,8 +61,5 @@ public class BankingApp {
 		}
 		in.close();
 	}
-
-
-
 
 }

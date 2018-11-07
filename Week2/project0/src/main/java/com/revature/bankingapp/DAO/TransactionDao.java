@@ -15,7 +15,7 @@ import oracle.jdbc.internal.OracleTypes;
 
 
 public class TransactionDao {
-	
+
 	public List<Transaction> findByUserID(int uid, int aid){
 		List<Transaction> transactions = new ArrayList<Transaction>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
@@ -43,7 +43,7 @@ public class TransactionDao {
 		}	
 		return transactions;
 	}
-	
+
 	public Transaction create(Transaction t) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			String sql = "INSERT INTO TRANSACTION(USER_ID, ACC_ID, ACC_NICKNAME, TRANS_TYPE, AMOUNT, NEWBAL, TRANSDATE) "
@@ -56,13 +56,19 @@ public class TransactionDao {
 			ps.setInt(4, t.getTransType());
 			ps.setDouble(5, t.getAmount());
 			ps.setDouble(6, t.getNewBal());
-			
-			
+			ps.setString(7, t.getDate());
+
+			int numRows = ps.executeUpdate();
+			if (numRows > 0) {								// making sure the sql statement returned something
+				ResultSet pk = ps.getGeneratedKeys();		// primary keys
+				while (pk.next()) {
+					t.setTransId(pk.getInt(1));
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return null;
+		return t;
 	}
 
 }

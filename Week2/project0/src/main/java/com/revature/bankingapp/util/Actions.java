@@ -1,10 +1,12 @@
 package com.revature.bankingapp.util;
 
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 import com.revature.bankingapp.pojos.Account;
+import com.revature.bankingapp.pojos.Transaction;
 import com.revature.bankingapp.pojos.User;
 import com.revature.bankingapp.service.AccountService;
 import com.revature.bankingapp.service.TransactionService;
@@ -87,7 +89,7 @@ public class Actions {
 				}
 			}
 		}
-//		in.close();
+		//		in.close();
 		return new User(username, password, first, last);			
 	}
 
@@ -96,8 +98,15 @@ public class Actions {
 	 * @param username
 	 * @return True if the user exists in the database
 	 */
+//	public static boolean userExists(String username) {
+//		List<String> usernames = us.getAllUsernames();
+//		if (usernames.contains(username)) return true;
+//		else return false;
+//	}
 	public static boolean userExists(String username) {
 		List<String> usernames = us.getAllUsernames();
+		
+		
 		if (usernames.contains(username)) return true;
 		else return false;
 	}
@@ -113,6 +122,7 @@ public class Actions {
 		String username = null;
 		while(in.hasNextLine()) {
 			username = in.nextLine();
+			username = username.toLowerCase();
 			boolean exists = Actions.userExists(username);					
 			if (exists == false) {
 				System.out.println("A user account with this username does not exist. Please enter an existing username: ");
@@ -145,11 +155,11 @@ public class Actions {
 				break;
 			}
 		}
-//		in.close();
+		//		in.close();
 		return user;
 	}
 
-	
+
 	/**
 	 * Runs welcome screen once logged in
 	 * @param user
@@ -188,7 +198,7 @@ public class Actions {
 					+ "\n[2] Deposit"
 					+ "\n[3] Transfer"
 					+ "\n[4] View Balance"
-					+ "\n[5] View All Transactions"
+					+ "\n[5] View Transactions"
 					+ "\n[6] Create Bank Account"
 					+ "\n[7] Deactivate Account"
 					+ "\n[8] Exit Application");
@@ -201,7 +211,17 @@ public class Actions {
 				case 1: // withdraw
 					System.out.println("Withdraw from: ");
 					acc = chooseAccount(accounts);
+					if (acc.getBalance() == 0) {
+						System.out.println("You have no money in this account.");
+						giveOptions(user);
+						break;
+					}
 					updatedAcc = AccountTransactions.withdraw(acc);
+					if (updatedAcc == null) {
+						System.out.println("You do not have enough funds in your account for this transaction.");
+						giveOptions(user);
+						break;
+					}
 					as.updateAccount(updatedAcc);
 					giveOptions(user);
 					break;
@@ -232,7 +252,10 @@ public class Actions {
 					giveOptions(user);
 					break;
 				case 5: // view transactions
-					System.out.println(ts.getTransactionsbyUser(user.getUsrId(), 5));
+					System.out.println("View transactions from: ");
+					acc = chooseAccount(accounts);
+					List<Transaction> transactions = ts.getTransactionsbyUser(user.getUsrId(), acc.getAccId());
+					printTransactions(transactions);
 					giveOptions(user);
 					break;
 				case 6: // create account
@@ -261,10 +284,10 @@ public class Actions {
 				giveOptions(user);			
 			}
 		}
-		
-//		in2.close();
+
+		//		in2.close();
 	}
-		
+
 	public static Account createAccount(User user) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -291,7 +314,7 @@ public class Actions {
 		}	
 		return account;
 	}
-	
+
 	// Get "nickname" for creating an account
 	public static Account createSpecificAccount(User user, int accType) {
 		@SuppressWarnings("resource")
@@ -301,7 +324,7 @@ public class Actions {
 		return new Account(user.getUsrId(), accType, nickname, 0.00);	// new account balance set to 0
 	}
 
-	
+
 	public static Account chooseAccount(List<Account> accounts) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -325,6 +348,19 @@ public class Actions {
 		}
 		return acc; 		
 	}
-	
+
+	static void printTransactions(List<Transaction> trans) {
+		if (trans == null) {
+			System.out.println("You have not performed any transactions on this account.");
+		}
+		else {
+			Iterator<Transaction> itr = trans.iterator();
+			while (itr.hasNext()) {
+				System.out.println(itr.next());	
+			}
+		}
+
+	}
+
 
 }

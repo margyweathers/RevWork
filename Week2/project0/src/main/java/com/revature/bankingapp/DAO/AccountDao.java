@@ -40,7 +40,7 @@ public class AccountDao implements DAO<Account, Integer> {
 	public List<Account> findByUserID(int id){
 		List<Account> accounts = new ArrayList<Account>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM ACCOUNT WHERE USER_ID = ?";
+			String sql = "SELECT * FROM ACCOUNT WHERE USER_ID = ? ORDER BY ACC_ID";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

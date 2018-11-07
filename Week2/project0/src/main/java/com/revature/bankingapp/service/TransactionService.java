@@ -16,4 +16,8 @@ public class TransactionService {
 		}
 		return transactions;
 	}
+	
+	public void createTransaction(Transaction t) {
+		tDao.create(t);
+	}
 }

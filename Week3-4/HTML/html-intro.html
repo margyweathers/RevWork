@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=p, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML Intro</title>
+
+    <style>
+    /* This is a comment */
+    /*Tag Selector */
+    li {
+        font-style: italic;
+        color: green;
+    } 
+    
+    /* Class Selector */
+    .special {
+        border: 2px dotted palevioletred;
+        border-radius: 5px;
+    }
+    /* ID Selector */
+    #unordered{
+        color:yellow !important; 
+    }
+    /* various other selectors */
+    /*for all child li of element with the id unordered */
+    #unordered li{
+        color:yellow !important; 
+    }
+    /* for all labels following a checked checkbox input     */
+    input[type=checkbox]:checked + label {
+        background-color: blue;
+    }
+    
+    </style>
+</head>
+<body>
+    <!-- This is a comment 
+    the body tag is where all content to be displayed in the window exists-->
+
+    hello!
+    <p>hello!</p>
+    <h1 style="background-color: #e61e1efb">hello!</h1>
+    <h2>hello!</h2>
+    <h3 class="special">hello!</h3>
+    <h4>hello!</h4>
+    <h5 class="special">hello!</h5>
+    <h6>hello!</h6>
+
+    <br>
+    <hr>
+    <br>
+
+    <h4>Lists:</h4>
+    <ul id="unordered" class="myThings">
+        <li>first</li>
+        <li>second</li>
+    </ul>
+    
+    <ol id="ordered" class="myThings">
+        <li>first</li>
+        <li>second</li>
+    </ol>
+
+    <h4>Tables</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Genesis</td>
+                <td>Bonds</td>
+                <td>gbonds17</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <iframe src="https://www.revature.com" frameborder="5px"></iframe>
+
+    <input type="checkbox" id="trueOrFalse" value="val"/>
+    <label for="val">Checkbox Example</label>
+
+</body>
+</html>
