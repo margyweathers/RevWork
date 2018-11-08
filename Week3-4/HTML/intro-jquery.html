@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intro to jQuery</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+       crossorigin="anonymous">
+
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+       crossorigin="anonymous"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+       crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+       crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="jumbotron">
+
+    <input type="text" class="form-control col-6" id="newItem" placeholder="New Item...">
+    <button id="add" class="btn btn-danger">Add Item</button>
+    <div class="row">
+        <div class="col-6">
+            <h3>To Buy:</h3>
+            <ul id="toBuy">
+                <li>Wine</li>
+                <li>Steak</li>
+                <li>Water</li>
+                <li>Pizza</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>Purchased:</h3>
+            <ul id="bought">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <script>
+    /*
+        jQuery s a JS library used to shortten syntax and add a few features to "vanilla" JavaScript
+        jQuery uses the CSS selectors to refer to elements ie $(`add`) can be used to select an element with the id of "add"
+            as opposed to in vanilla js document using document.getElementById('add')
+    */
+
+    $('#add').on('click', function(){
+        console.log("text");
+        let newItem = $('#newItem').val();
+        let elem = $('<li></li>').text(newItem);
+//       let elem = $(`<li>${newItem}</li>`);        // Could also use string interpolation
+        $('#toBuy').append(elem);
+        $('#newItem').val('');      // Clear the input after the item gets put in the list
+    });
+
+    // $('li').on('click', function(){
+    //     $(this).css('text-decoration', 'line-through');      // This will only apply to items pre loaded onto the page
+    // });
+
+    // $('#toBuy').on('click','li', function(){
+    //     $(this).css('text-decoration', 'line-through');       // Don't even need this much code!
+    //     let purchasedItem = $(this).text();
+    //     let elem = $('<li></li>').text(purchasedItem);
+    //     $('#Purchased').append(elem);
+    //     $(this).remove();
+    // })
+
+    $('#toBuy').on('click','li', function(){
+        $('#bought').append(this);
+    });
+
+
+    
+    
+    </script>
+
+</body>
+</html>

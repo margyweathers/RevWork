@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+    
+</head>
+<body>
+
+    <h1>Welcome to Rev Books</h1>
+
+    <h1 align="center">Welcome to Rev Books</h1>
+    <div class="jumbotron">
+        <h4>Add a new book:</h4>
+        <br> ISBN:
+        <input type="number" id="isbn" class="col-4 form-control" maxlength="10" minlength="10">
+        <div class="danger" id="isbnwarning"></div>
+        <br> Title:
+        <input type="text" id="title" class="col-4 form-control">
+        <br> Price:
+        <input type="text" id="price" class="col-4 form-control">
+        <br> Genre:
+        <select id="genres" class="col-4 form-control"></select>
+
+    </div>
+
+
+    <button id="add" class="btn btn-primary">Add Book!</button>
+
+    <hr>
+    <table class="table table-sm table-hover table-bordered thead-light">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Genre</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+
+        </tbody>
+    </table>
+
+
+<script>
+    
+    window.onload = function(){
+        loadGenres();
+        document.getElementById('add').addEventListener('click', addBook);
+    }
+    function loadGenres(){
+        var genres = ["Fiction", "Non-Fiction", "History", "Drama", "Romance"];
+        for(let i = 0; i < genres.length; i++) {
+            let elem = document.createElement("option");
+            elem.value = genres[i];
+            elem.innerHTML = genres[i];
+            document.getElementById('genres').appendChild(elem);
+        }
+    }
+    var count = 100;
+    function addBook(){
+        //get data from input values
+        var isbn = document.getElementById('isbn').value;
+        var title = document.getElementById('title').value;
+        var price = document.getElementById('price').value;
+        var genre = document.getElementById('genres').value;
+        var id = count++;
+        
+        //generate new DOM elements
+        var row = document.createElement("tr");
+        var cell1 = document.createElement("td");
+        var cell2 = document.createElement("td");
+        var cell3 = document.createElement("td");
+        var cell4 = document.createElement("td");
+        var cell5 = document.createElement("td");
+        //add data to cells 
+        cell1.innerText = id;
+        cell2.innerText = isbn;
+        cell3.innerText = title;
+        cell4.innerText = price;
+        cell5.innerText = genre;
+        //append each element to its parent 
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        row.appendChild(cell4);
+        row.appendChild(cell5);
+        document.getElementById("tablebody").appendChild(row);
+    }
+</script>
+    
+</body>
+</html>
