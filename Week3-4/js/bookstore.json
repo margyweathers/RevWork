@@ -1,0 +1,35 @@
+{
+    "books": [
+        {
+            "id":1, 
+            "title" : "Harry Potter and the Sorcerer's Stone",
+            "isbn" : "1927465738",
+            "price" : 13.99,
+            "genreId" : 1,
+            "authorId" : 1
+        }
+    ],
+    "genres": [
+        {
+            "id" : 1,
+            "genre" : "Fiction"
+        }, 
+        {
+            "id" : 2,
+            "genre" : "Fantasy"
+        },
+        {
+            "id" : 3,
+            "genre" : "History"
+        }
+    ],
+    "authors":[
+        {
+            "id" : 1,
+            "firstName" : "J.K.",
+            "lastName" : "Rowling",
+            "bio" : "She's awesome"
+        }
+
+    ]
+}
