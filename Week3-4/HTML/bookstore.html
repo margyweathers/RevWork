@@ -16,8 +16,8 @@
     crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
     crossorigin="anonymous"></script>
-    
 </head>
+
 <body>
 
     <h1>Welcome to Rev Books</h1>
@@ -33,7 +33,12 @@
         <br> Price:
         <input type="text" id="price" class="col-4 form-control">
         <br> Genre:
-        <select id="genres" class="col-4 form-control"></select>
+        <select id="genres" class="col-4 form-control">
+        </select> 
+        <button class="btn btn-default" id="addGenre">
+            <span id="genreSpan">Add</span>
+        </button>
+        <input type="text" class="form-control col-4" placeholder="New Genre..." id="newGenre" hidden="true">
 
     </div>
 
@@ -56,8 +61,7 @@
         </tbody>
     </table>
 
+    <script type="text/javascript" src="../js/bookstore.js"></script>
 
-<script type="text/javascript" src="../js/bookstore.js" ></script>
-    
 </body>
 </html>

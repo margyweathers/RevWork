@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>AJAX Intro</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -106,8 +106,12 @@
 
     <script>
             window.onload = function(){
-                $('#go').on('click', useTheForce);
-            }
+                $('#go').on('click', function(){
+                    useTheForce();
+  //                  ajaxWithJQuery();
+                })  
+            }      
+
             function useTheForce(){
                 //AJAX! (AJAX is a series of steps)
                 //STEP 1 -  create the XMLHttpRequest
@@ -131,12 +135,27 @@
                 //STEP 3 - open request
                 var id = $('#swID').val();
                 var url = `https://swapi.co/api/people/${id}/`;
-                xhr.open('GET', url, true);
+                xhr.open('GET', url);
 
                 //STEP 4 - send request
-                //xhr.send(body); where param is response body.. which GET requests do not have
+                //xhr.send(body); where param is request body.. which GET requests do not have
                 xhr.send(); 
             }
+
+
+
+
+// ** Need the rest from GIT
+
+            // // AJAX WITH JQUERY
+            // function ajaxWithJQuery(){
+            //     $.ajax({
+            //         type: 'GET',
+            //         url: 'https://swapi.co/api/people/${$('#id').val()}',
+            //         success:
+                    
+            //     })
+            // }
 
             
             

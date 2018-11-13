@@ -17,7 +17,7 @@ let personStr = JSON.stringify(person);
 
 ///////////
 
-let respString = ""; //fulled with some text
+let respString = ""; //filled with some text
 let resp = JSON.parse(respString);
 
 resp.field1;

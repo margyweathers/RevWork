@@ -9,6 +9,10 @@ window.onload = function(){
     $('#substringButton').on('click', runSubstring);
     $('#evenButton').on('click', runIsEven);
     $('#palindromeButton').on('click', runIsPalindrome);
+    $('#shapeButton').on('click', runPrintShape);
+    $('#descendingButton').on('click', runDescending);
+    $('#constructorButton').on('click', createPersonWithConstructor);
+
 
     }
      ////// PROBLEM 1  
@@ -149,4 +153,138 @@ window.onload = function(){
         }
     }
 
+    ////// PROBLEM 8
+    function runPrintShape(){
+        let shape = $('#shape').val();
+        let height = $('#height').val();
+        let character = $('#character').val();
+        $('#shapeOutput').html(printShape(shape, height, character));
+    }
+    function printShape(shape, height, character){
+        h = Math.round(height);
+        if (isEven(height) == "Yes" || height <=0){
+            return "Height must be an odd integer greater than 0;"
+        }
+        switch(shape){
+            case "square":
+            case "Square":
+                return makeSquare(h, character);
+            case "triangle":
+            case "Triangle":
+                return makeTriangle(h, character);
+            case "diamond":
+            case "Diamond":
+                return makeDiamond(h, character);
+                break;
+            default:
+                return "Must enter either 'square', 'triangle', or 'diamond' for the shape."
+        }
+    }
+    function makeSquare(h, c){
+        let pattern = "";
+        for (let i = 1; i <= h; i++){
+            for (let j = 1; j <= h; j++){
+                pattern = pattern.concat(c);
+            }
+            pattern = pattern.concat('<br/>');
+        }
+        return pattern;
+    }
+    function makeTriangle(h, c){
+        let pattern = "";
+        for (let i = 1; i <= h; i++){
+            for(let j = 1; j <= i; j++){
+                pattern = pattern.concat(c);
+            }
+            pattern = pattern.concat('<br/>');
+        }
+        return pattern
+    }
+    // AHHHHHH YYYYYYYYYYYYYYY
+    function makeDiamond(h, c){
+        let pattern = "";
+        // ascend
+        for (let i = 0; i < h/2 - 0.5; i++){
+            var space = i;
+            for (let j = 1; j <= h/2 + 0.5; j+=2){
+                if (space < h/2 - 0.5){
+                    pattern = pattern.concat('&nbsp;');
+                    space++;
+                }
+                else {
+                    pattern = pattern.concat(c);
+                }
+            }
+            pattern = pattern.concat('<br/>');
+        }
+        // full
+        for (let z = 1; z <= h; z++){
+            pattern = pattern.concat(c)
+        }
+        pattern = pattern.concat('<br/>');
+        // // descend
+        // for (let i =  h/2 - 0.5; i > 0; i--){
+        //     var space = i;
+        //     for (let j = h/2 + 0.5; j >= 1; j--){
+        //         if (space < h/2 - 0.5){
+        //             pattern = pattern.concat('&nbsp;');
+        //             space++;
+        //         }
+        //         else {
+        //             pattern = pattern.concat(c);
+        //         }
+        //     }
+        //     pattern = pattern.concat('<br/>');
+        // }
 
+     
+        return pattern;
+    }
+
+    ////// PROBLEM 12: Define object using a constructor
+    function createPersonWithConstructor(){
+        let name = $('#name').val();
+        let age = $('#age').val();
+        var p = new Person(name, age);
+        $('#constructorOutput').html(JSON.stringify(p));    // How can you print without stringify?
+    }
+    function Person(name, age){
+        this.name = name;
+        this.age = age;
+    };
+
+
+
+
+    ////// PROBLEM 14: Clock. HOW CAN IT NOT TAKE 1 SECOND TO LOAD?!?!?
+    $(document).ready(function(){
+        setInterval(function(){
+            let h = new Date().getHours();
+            let m = new Date().getMinutes();
+            let s = new Date().getSeconds();
+            h = h % 12;
+            let time = h + ":" + m + ":" + s;
+            $('#clock').html(`Current Time: ${time}`);
+        },1000);
+    });
+   
+
+    ////// PROBLEM 15
+    function runDescending(){
+        let n = $('#descending').val();
+        $('#descendingOutput').html(descending(n));
+    }
+    function descending(n){
+        if (n < 0){
+            return "Number input must be positive";
+        }
+        n = n.toString();
+        if (n.includes(".")){
+            n = n.replace('.','');
+        }
+        numArray = n.split("");
+        numArray = numArray.sort();
+        rArray = numArray.reverse();
+        numString = rArray.join("");
+        return numString;
+    }

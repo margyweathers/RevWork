@@ -22,7 +22,7 @@ var functionExpression = function(){
 functionExpression();
 
 // IIFE - execute as soon as they are defined
-// IIFE's are a design pattern, also known as self-executing anonomous functions
+// IIFE's are a design pattern, also known as self-executing anonymous functions
 (function(){
     console.log("this is an immediately invoked function expression")
 })();   // The () invokes the function
@@ -72,9 +72,7 @@ counter.value()         // will now return 3
 
 
 var makeCounter = function(){
-
     var privateCounter = 0;
-
     function changeBy(val){
         privateCounter += val;
     }
@@ -90,12 +88,11 @@ var makeCounter = function(){
             return privateCounter;
         }
     }
-
 }
 // makeCounter.increment();        // won't work
-var counter1 = makeCOunter();
+var counter1 = makeCounter();
 counter1.increment();              // 2 different objects in memory
-var counter2 = makeCOunter();
+var counter2 = makeCounter();
 counter2.increment();              // 2 different objects in memory
 
 // JSON (JavaScript Object Notation): string represestation of an object

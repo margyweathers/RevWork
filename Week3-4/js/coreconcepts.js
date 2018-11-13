@@ -126,7 +126,7 @@ var addArrow = (a, b)=> {return a + b;}
 
 
 
-// scopes, hoising, operators, loops, statements, 
+// scopes, hoisting, operators, loops, statements, 
 
 
 
