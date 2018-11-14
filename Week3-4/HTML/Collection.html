@@ -36,11 +36,8 @@
     </div>
 
     <div class="card">
-        <div class="card-header">
-        </div>
+        <h5 class="card-header">ArrayList vs. LinkedList</h5>
         <div class="card-body">
-            <h5 class="card-title">ArrayList vs. LinkedList</h5>
-
             <table class="table table-bordered col-6">
                 <thead>
                     <tr>
@@ -53,12 +50,12 @@
                     <tr>
                         <th scope="row">add()</th>
                         <td>O(1)</td>
-                        <td>O(1)*</td>
+                        <td>O(1)</td>
                     </tr>
                     <tr>
                         <th scope="row">remove()</th>
                         <td>O(n)</td>
-                        <td>O(n)</td>
+                        <td>O(1) + Search...</td>
                     </tr>
                     <tr>
                         <th scope="row">get()</th>
@@ -79,18 +76,136 @@
             </table>
         </div>
     </div>
-    <div class="card">
-            <h5 class="card-header">ArrayList</h5>
-            <div class="card-body">
-                <img src="http://manifesto.co.uk/wp-content/uploads/2015/01/ArrayList.png">
-              <br>
-              <img src="http://manifesto.co.uk/wp-content/uploads/2015/01/ArrayList2.png">
-              <h5 class="card-title">remove()</h5>
-              <img src="http://manifesto.co.uk/wp-content/uploads/2015/01/ArrayList3a.png">
 
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <!-- ARRAYLIST VS LINKEDLIST-->
+    <div class="container-fluid" style="padding: 0%">
+        <div class="row">
+            <div class="col-md-6" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">ArrayList</h5>
+                    <div class="card-body">
+                        <p class="card-text">Implemented as a resizable array.</p>
+                        <img src="http://manifesto.co.uk/wp-content/uploads/2015/01/ArrayList.png">
+                        <br>
+                        <img src="http://manifesto.co.uk/wp-content/uploads/2015/01/ArrayList2.png">
+                        <h5 class="card-title">remove()</h5>
+                        <img src="http://manifesto.co.uk/wp-content/uploads/2015/01/ArrayList3a.png">
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-md-6" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">LinkedList</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <iframe src="https://visualgo.net/en/list" height="500" width="700" style="-webkit-transform:scale(1);-moz-transform-scale(0.25);"></iframe>
+                        </div>
+                        <div class="row">
+                            <a href="https://visualgo.net/en/list" target="_blank">VisuAlgo - LinkedList</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- HASHMAP VS TREEMAP-->
+        <div class="row">
+            <div class="col-md-6" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">HashMap</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <ul>
+                                <li>Time Complexity: O(1)</li>
+                                <li>Unordered</li>
+                                <li>Can have 1 null key, no null values</li>
+                                <li>Implemented as a <a href="https://visualgo.net/en/hashtable" target="_blank">HashTable</a></li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <img src="http://abutko.github.io/418project/hashtable.png" class="rounded mx-auto d-block"
+                                alt="..." width="600" height="450">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">TreeMap</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <ul>
+                                <li>Time Complexity: O(logN)</li>
+                                <li>Ordered by key (using Comparable and Comparator)</li>
+                                <li>No null can, but can have null values</li>
+                                <li>Implemented as a <a href="https://www.cs.usfca.edu/~galles/visualization/RedBlack.html "
+                                        target="_blank">Red Black Tree</a></li>
+                                <ul>
+                                    <li>An RBT is a Binary Search Tree modified to keep a balanced shape</li>
+                                    <li>Structuring rules increases time complexity</li>
+                                </ul>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Red-black_tree_example.svg"
+                                class="rounded mx-auto d-block" alt="..." width="600" height="300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- HASHSET AND TREESET-->
+        <div class="row">
+            <div class="col-md-6" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">HashSet</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <ul>
+                                <li>Time Complexity: O(1)</li>
+                                <li>Unordered</li>
+                                <li>Can have 1 null value</li>
+                                <li>Implemented using <b>HashMap</b></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">TreeSet</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <ul>
+                                <li>Time Complexity: O(logN)</li>
+                                <li>Sorted in Ascending order (using Comparable and Comparator)</li>
+                                <li>No null values</li>
+                                <li>Implemented using <b>TreeMap</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LINKEDHASHSET/MAP-->
+        <div class="row">
+            <div class="col-md-12" style="padding: 0%">
+                <div class="card">
+                    <h5 class="card-header">LinkedHashSet and LinkedHashMap</h5>
+                    <div class="card-body">
+                        <ul>
+                            <li>Both maintain insertion order, but implementation requires more memory than their
+                                HashSet and HashMap counterparts</li>
+                            <li>LinkedHashSet is implemented using LinkedList and HashSet</li>
+                            <li>LinkedHashMap is implemented using LinkedList and HashMap</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>

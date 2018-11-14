@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- opening tag basically says how it should be parsed... -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+
+	<display-name>hello-servlets</display-name>
+
+	<!-- WEB.XML aka Deployment Descriptor is the file with which we configure 
+		out web apps. Here, we indicate which url-patterns (endpints) will map requests 
+		to to respective servlets and configure other details like parameters and 
+		when to initialize our servlets -->
+
+	<servlet>
+		<servlet-name>HS</servlet-name>
+		<servlet-class>com.revature.servlets.HelloServlets</servlet-class>
+		<!-- SERVLET CONFIG = configuration information for a specific servlet -->
+		<init-param>
+			<param-name>secret</param-name>
+			<param-value> This secret was configured in my web.xml
+  		This is servlet config!</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HS</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLET CONTEXT - parameter(s) applied to every servlet in the context 
+		of the container -->
+	<context-param>
+		<param-name>AppInfo</param-name>
+		<param-value>Hello. This is an example of servlet context. This App Info will be visible in every 
+  	servlet that is a part of this application</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>hServlet</servlet-name>
+		<servlet-class>com.revature.servlets.HelloHttpServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>hServlet</servlet-name>
+		<url-pattern>/httpInfo</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
