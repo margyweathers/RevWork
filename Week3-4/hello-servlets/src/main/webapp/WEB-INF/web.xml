@@ -10,8 +10,8 @@
 	<display-name>hello-servlets</display-name>
 
 	<!-- WEB.XML aka Deployment Descriptor is the file with which we configure 
-		out web apps. Here, we indicate which url-patterns (endpints) will map requests 
-		to to respective servlets and configure other details like parameters and 
+		our web apps. Here, we indicate which url-patterns (endpoints) will map requests 
+		to respective servlets and configure other details like parameters and 
 		when to initialize our servlets -->
 
 	<servlet>
@@ -35,7 +35,7 @@
 		of the container -->
 	<context-param>
 		<param-name>AppInfo</param-name>
-		<param-value>Hello. This is an example of servlet context. This App Info will be visible in every 
+		<param-value>This is an example of servlet context. This App Info will be visible in every 
   	servlet that is a part of this application</param-value>
 	</context-param>
 

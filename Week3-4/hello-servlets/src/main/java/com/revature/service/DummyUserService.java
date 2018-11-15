@@ -7,7 +7,7 @@ import com.revature.pojos.User;
 public class DummyUserService {
 
 	/*
-	 * 	Dummy service later with an in memory store of users
+	 * 	Dummy service layer with an in-memory store of users
 	 */
 	
 	static ArrayList<User> users = new ArrayList<User>();
@@ -32,7 +32,10 @@ public class DummyUserService {
 			}
 		}
 		*/
-		
+				
+		/*
+		 * Stream is used to compute elements as per the pipelined methods without altering the original value of the object.
+		 */
 		// OR COULD USE STREAMS
 		User u = users.stream()	// turns users into a stream
 				.filter(x -> x.getUsername().equalsIgnoreCase(name))		// test from Predicate Functional Interface
