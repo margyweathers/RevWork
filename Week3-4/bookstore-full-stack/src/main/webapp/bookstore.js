@@ -40,7 +40,7 @@ function loadBooksView(){
 			$('#view').html(xhr.responseText);
 		}
 	}
-	xhr.open("GET", "books.view", true);
+	xhr.open("GET", "books.view", true);		// books.view is the URI??
 	xhr.send();	
 }
 
@@ -50,7 +50,7 @@ function loadGenreView(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			//do things w response
 			$('#view').html(xhr.responseText);
-			// manipulate genre view
+			// manipulate Genre view
 			getGenres();
 			$('#addGenre').on('click', addGenre);
 		}
@@ -88,8 +88,14 @@ function getGenres(){
 	xhr.send();
 }
 
+function appendToGenreList(g){
+	var li = $(`<li>${g.name}</li>`);
+	$('#genreList').append(li);
+}
+
+
 function addGenre(){
-	
+	console.log("Clicked add button");
 	var genre = $('#newGenre').val();
 	var obj = {
 			name: genre
@@ -99,15 +105,16 @@ function addGenre(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
-			console.log(xhr.status)
-			console.log(xhr.responseText)
-			console.log(xhr.responseType)
+			console.log(xhr.status);
+			console.log(xhr.responseText);
+			console.log(xhr.responseType);
+			appendToGenreList(obj);
 		}
 	}
 	xhr.open("POST", "genres");
+	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.send(toSend);
-	
-	
+
 }
 
 

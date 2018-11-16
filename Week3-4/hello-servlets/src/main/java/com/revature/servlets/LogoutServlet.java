@@ -20,9 +20,9 @@ public class LogoutServlet extends HttpServlet{
  	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession(false);
-		
-		String toTrace = "Logging out session with attributes: /n";
+		HttpSession session = req.getSession(false);	// Returns current session, but doesn't create one if req doesn't have an existing one
+
+		String toTrace = "Logging out session with attributes: \n";
 		Enumeration<String> atts = session.getAttributeNames();
 		while(atts.hasMoreElements()) {
 			toTrace += atts.nextElement() + "\n";
@@ -41,7 +41,7 @@ public class LogoutServlet extends HttpServlet{
 		}
 		
 		PrintWriter writer = resp.getWriter();
-		String out = "You are successfully logged out!";
+		String out = "You are successfully logged out!<br>";
 		out += "<a href=\"login\">Back to Log In page! </a>";
 		resp.setContentType("text/html");
 		writer.write(out);

@@ -79,10 +79,9 @@ public class LoginServlet extends HttpServlet {
 		
 		PrintWriter writer = resp.getWriter();
 		resp.setContentType("text/html");
-		String text = "";
 		
 		if(user == null) {
-			req.getRequestDispatcher("error-login.html").forward(req, resp);
+			req.getRequestDispatcher("error-login.html").forward(req, resp);		// forwarding??
 		}
 		else {
 			//successful log in 
@@ -93,9 +92,9 @@ public class LoginServlet extends HttpServlet {
 			//creates new session and returns it if none exists
 			session.setAttribute("user", user);
 			logger.trace("ADDING USER TO SESSION: " + session.getId());
-			resp.sendRedirect("home");
 			//render home view
 			//redirect to home servlet
+			resp.sendRedirect("home");
 			
 		}
 		

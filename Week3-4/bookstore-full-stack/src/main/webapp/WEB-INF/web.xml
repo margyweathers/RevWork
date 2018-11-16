@@ -16,4 +16,6 @@ designate a helper method/class to carry out appropriate behavior
 	<servlet-name>FrontController</servlet-name>
 	<url-pattern>*.view</url-pattern>
 </servlet-mapping>
+
+
 </web-app>
