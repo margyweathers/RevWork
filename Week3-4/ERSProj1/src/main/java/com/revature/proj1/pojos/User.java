@@ -8,6 +8,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private int roll;
+	private int approved;
 	
 	public User() {}
 
@@ -18,6 +19,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.roll = roll;
+		this.approved = 0;		// Need manager approval
 	}
 
 	public int getUserId() {
@@ -67,7 +69,18 @@ public class User {
 	public void setRoll(int roll) {
 		this.roll = roll;
 	}
+
+	public int getApproved() {
+		return approved;
+	}
+
+	public void setApproved(int approved) {
+		this.approved = approved;
+	}
 	
-	
+	@Override
+	public String toString() {
+		return "Name: " + firstName + " " + lastName + ". Roll: " + roll;
+	}
 
 }

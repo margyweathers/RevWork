@@ -1,7 +1,7 @@
-INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL)
-  VALUES('mweathers@gmail.com', 'pass', 'Margy', 'Weathers', 1);
-INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL)
-  VALUES('manager@gmail.com', '123', 'Financial', 'Manager', 1);
+INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL, APPROVED)
+  VALUES('mweathers@gmail.com', 'pass', 'Margy', 'Weathers', 1, 1);
+INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL, APPROVED)
+  VALUES('manager@gmail.com', '123', 'Financial', 'Manager', 1, 1);
 
 SELECT * FROM USR;
 SELECT * FROM USR WHERE EMAIL = 'mweathers@gmail.com';

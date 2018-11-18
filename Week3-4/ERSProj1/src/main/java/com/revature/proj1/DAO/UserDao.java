@@ -34,6 +34,7 @@ public class UserDao {
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
 				u.setRoll(rs.getInt(6));
+				u.setApproved(rs.getInt(7));
 				users.add(u);
 			}					
 		} catch (SQLException e) {
@@ -62,6 +63,7 @@ public class UserDao {
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
 				u.setRoll(rs.getInt(6));
+				u.setApproved(rs.getInt(7));
 			}		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,6 +93,7 @@ public class UserDao {
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
 				u.setRoll(rs.getInt(6));
+				u.setApproved(rs.getInt(7));
 			}		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,14 +129,15 @@ public class UserDao {
 	 */
 	public User create(User u) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL) VALUES(?,?,?,?,?)";
+			String sql = "INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL) VALUES(?,?,?,?,?,?)";
 			String[] keyNames = {"USER_ID"};
 			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
 			ps.setString(1, u.getEmail());
 			ps.setString(2,u.getPwd());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
-			ps.setInt(5, u.getRoll());		
+			ps.setInt(5, u.getRoll());
+			ps.setInt(6, u.getApproved());
 			int numRows = ps.executeUpdate();
 			if (numRows == 0) {
 				return null;

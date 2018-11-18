@@ -37,13 +37,13 @@ public class LoginServlet extends HttpServlet {
 	 * FORWARD: a forward is performed internally by the servlet
 	 * 	The browser is completely unaware that it has taken place, so 
 	 * 		its original URL remains intact
-	 * 	Any browser reload of the resulting page will simple repeat 
+	 * 	Any browser reload of the resulting page will simply repeat 
 	 * 		the original request, with the original URL
 	 * 
 	 * REDIRECT: a redirect is a two step process, where the web app
 	 * 	instructs the browser to fetch a second URL, which differs from
 	 * 	the original
-	 * 	A browser reload of the second URL will not repeat the original 
+	 * 	A browser reload of the second URL will not repeat the original
 	 * 		request, but will rather fetch the second URL
 	 * 	Redirect is marginally slower than a forward, since it requires 
 	 * 		two browser requests, not one

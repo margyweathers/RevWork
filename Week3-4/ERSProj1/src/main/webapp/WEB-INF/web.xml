@@ -10,6 +10,24 @@
 	<servlet-name>WelcomeFrontController</servlet-name>
 	<url-pattern>*.welcomeView</url-pattern>
 </servlet-mapping>  
+
+<servlet>
+	<servlet-name>EmployeeFrontController</servlet-name>
+	<servlet-class>com.revature.proj1.servlets.LoadEmployeeViewsServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>EmployeeFrontController</servlet-name>
+	<url-pattern>*.employeeView</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ManagerFrontController</servlet-name>
+	<servlet-class>com.revature.proj1.servlets.LoadManagerViewsServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>ManagerFrontController</servlet-name>
+	<url-pattern>*.managerView</url-pattern>
+</servlet-mapping>  
   
   
   

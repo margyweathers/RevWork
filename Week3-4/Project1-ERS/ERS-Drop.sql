@@ -1,5 +1,5 @@
 -- DROP ALL TABLES
-drop table users;
+drop table usr;
 drop table reimbursements;
 drop table resubmit;
 drop table reimbursement_type;

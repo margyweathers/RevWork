@@ -1,23 +1,21 @@
 
-
-
-
-<form class="form-signin">
+<form class="form-signin" action="login" method="POST">
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal">Welcome to the Expense Reimbursement System</h1>
         <p>Please sign in</p>
       </div>
 
       <div class="form-label-group">
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="inputEmail">Email address</label>
       </div>
 
       <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" name="inputPassword" class="form-control" placeholder="Password" required="">
         <label for="inputPassword">Password</label>
       </div> 
       <button class="btn btn-lg btn-info btn-block" type="submit" id="login">Sign in</button>
-      
-      <p>Don't have an account? <a href="#">Create an account</a> </p>      
+      <hr>
+      <p>Don't have an account?<input type="submit" id="createAccount"class="btn btn-link" value="Sign in"> </p>     
+       
     </form>
