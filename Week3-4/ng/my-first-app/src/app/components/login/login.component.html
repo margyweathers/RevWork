@@ -1,0 +1,8 @@
+Username:
+<input type="text" class="form-control col-4" [(ngModel)]="username">
+<br>
+Password: 
+<input type="password" class="form-control col-4" [(ngModel)]="password"> <!-- NEED TO IMPORT FORMS MODULE TO USE ngModel or binding-->
+<button class="btn btn-submit" (click)="clickLogin()">Login</button>
+<br>
+<div>{{output}}</div>

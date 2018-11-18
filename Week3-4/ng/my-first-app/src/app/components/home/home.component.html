@@ -1,0 +1,35 @@
+
+<p>
+  home works!
+
+  This is a test
+
+</p>
+
+<h3>Data Binding</h3>
+<i>Angular supports data binding, which is a mechanism for coordinating parts of a template (HTML) with parts
+  of component (TS)
+  There are numerous types of Data Binding.
+</i>
+<br>
+
+This is string interpolation, which uses curly braces to display data represented in the component or is used
+to evaluate expressions:<br>
+Text: {{ text }} <br>
+3 + 5 = {{ 3 + 5 }}
+
+<br><br>
+The following example will display both <b>property binding</b>
+ and <b>event binding</b> 
+<br>
+{{count}}
+ <button [ngClass]="buttonClass" (mouseover)="changeColor()" 
+     (click)="clickButton()">Click Me!</button>
+
+<h3>Two Way Data Binding</h3>
+<input type="text" class="form-control col-4" [(ngModel)]="color">
+<div [style.background-color]="color">{{color}}</div>
+
+
+
+ <h3>Directives</h3>
