@@ -129,7 +129,7 @@ public class UserDao {
 	 */
 	public User create(User u) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL) VALUES(?,?,?,?,?,?)";
+			String sql = "INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL, APPROVED) VALUES(?,?,?,?,?,?)";
 			String[] keyNames = {"USER_ID"};
 			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
 			ps.setString(1, u.getEmail());
@@ -161,14 +161,15 @@ public class UserDao {
 	 */
 	public User update(User u) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "UPDATE USR SET EMAIL = ?, PWD = ?, FIRSTNAME = ?, LASTNAME = ?, ROLL = ? WHERE USER_ID = ?";
+			String sql = "UPDATE USR SET EMAIL = ?, PWD = ?, FIRSTNAME = ?, LASTNAME = ?, ROLL = ? APPROVED = ? WHERE USER_ID = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getEmail());
 			ps.setString(2, u.getPwd());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
 			ps.setInt(5, u.getRoll());
-			ps.setInt(6, u.getUserId());
+			ps.setInt(6, u.getApproved());
+			ps.setInt(7, u.getUserId());
 			int numRows = ps.executeUpdate();
 			if (numRows == 0) {
 				return null;

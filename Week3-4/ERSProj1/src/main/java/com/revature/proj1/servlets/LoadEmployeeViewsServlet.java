@@ -10,21 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-@WebServlet("/employee")
 public class LoadEmployeeViewsServlet extends HttpServlet{
 private static Logger log = Logger.getLogger(LoadEmployeeViewsServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String resourcePath = "partials/" + process(req, resp) + ".html";
+		log.debug(resourcePath);
 		req.getRequestDispatcher(resourcePath).forward(req, resp);
 	}
 	
 	static String process(HttpServletRequest req, HttpServletResponse resp) {
+		log.trace("In LoadEmployeeViews Servlet process()");
 		switch(req.getRequestURI()) {
-		case "/ERSProj1/home.employeeView":
-			return "employee-home";
+		case "/ERSProj1/front.employeeView":
+			return "employee-front";
 		}
+	
+			
 			
 		return null;
 	}

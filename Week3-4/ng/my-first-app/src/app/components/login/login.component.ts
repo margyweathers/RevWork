@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
   currentUser: User;
 
   constructor(private loginService: LoginService) { 
-    console.log('Using dependency injection in login component for login service')
+    console.log('Using dependency injection in login component for login service');
   }
 
+  // automatically called
   ngOnInit() {
   }
 

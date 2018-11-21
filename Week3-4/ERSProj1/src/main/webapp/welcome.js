@@ -11,9 +11,7 @@ function loadWelcomeView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			//do things w response
 			$('#welcomeView').html(xhr.responseText);
-//			$('#login').on('click', login);
 			$('#createAccount').on('click', createAccount);
 		}
 	}
@@ -34,13 +32,6 @@ function createAccount(){
 }
 
 
-//function login(){
-//	console.log('In login in welcome.js');
-//	var email = $('#inputEmail').val();
-//	var password = $('#inputPassword').val();
-//	console.log(email);
-//	console.log(password);
-//}
 
 
 

@@ -34,7 +34,7 @@ public class GenreServlet extends HttpServlet{
 		
 		// send response
 		PrintWriter writer = resp.getWriter();
-		resp.setContentType("application/jason");
+		resp.setContentType("application/json");
 		writer.write(json);
 		
 		

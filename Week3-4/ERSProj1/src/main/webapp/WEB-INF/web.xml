@@ -27,7 +27,16 @@
 <servlet-mapping>
 	<servlet-name>ManagerFrontController</servlet-name>
 	<url-pattern>*.managerView</url-pattern>
-</servlet-mapping>  
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>EmployeeHome</servlet-name>
+	<servlet-class>com.revature.proj1.servlets.LoadEmployeeHomeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>EmployeeHome</servlet-name>
+	<url-pattern>/load-employee-home</url-pattern>
+</servlet-mapping>
   
   
   

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// Must import Router
+import { Router } from '@angular/router';
 
 /*
 @Component indicates that the following 
@@ -10,23 +12,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  text = 'hello world';
-  buttonClass = 'btn btn-secondary';
-  count = 0;
-  color = 'blue';
 
-  constructor() { }
+  // must use Dependency Injection for router
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  changeColor() {
-    const classes = ['primary', 'secondary', 'success',
-  'danger', 'warning', 'info', 'light', 'dark'];
-  this.buttonClass = `btn btn-${classes[this.count % 8]}`;
-  }
-  clickButton() {
-    this.count++;
+  goToLogin(){
+    this.router.navigate(['login']);  // Notes on GIT?
   }
 
 }

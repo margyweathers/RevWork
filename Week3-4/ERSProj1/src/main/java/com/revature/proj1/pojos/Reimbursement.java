@@ -18,10 +18,11 @@ public class Reimbursement {
 	static SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy HH:mm");
 	static DecimalFormat decf = new DecimalFormat("0.00"); 
 	
-	public Reimbursement(int author, int rResolver, double amount, int rType, String rDesc, int rStatus) {
+	public Reimbursement() {}
+	
+	public Reimbursement(int author, double amount, int rType, String rDesc, int rStatus) {
 		super();
 		this.author = author;
-		this.rResolver = rResolver;
 		this.amount = amount;
 		this.rType = rType;
 		this.rDesc = rDesc;

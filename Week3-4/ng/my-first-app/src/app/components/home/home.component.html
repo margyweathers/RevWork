@@ -1,35 +1,18 @@
+<h1>Angular 101's</h1>
 
-<p>
-  home works!
+ <hr>
+ <h3>Routing</h3>
+ <i>Routing is the mechanism by which Angular navigates between views, 
+   or pages, of your application. Much like a browser manages displaying 
+   different pages based on links clicked, the Angular Router is used 
+   to manage such navigation in your app. This is a crucial tool in building
+   SPA's with Angular. It is a module, RouterModule, that configures all 
+   routes for the app.
+ </i>
 
-  This is a test
-
-</p>
-
-<h3>Data Binding</h3>
-<i>Angular supports data binding, which is a mechanism for coordinating parts of a template (HTML) with parts
-  of component (TS)
-  There are numerous types of Data Binding.
-</i>
-<br>
-
-This is string interpolation, which uses curly braces to display data represented in the component or is used
-to evaluate expressions:<br>
-Text: {{ text }} <br>
-3 + 5 = {{ 3 + 5 }}
-
-<br><br>
-The following example will display both <b>property binding</b>
- and <b>event binding</b> 
-<br>
-{{count}}
- <button [ngClass]="buttonClass" (mouseover)="changeColor()" 
-     (click)="clickButton()">Click Me!</button>
-
-<h3>Two Way Data Binding</h3>
-<input type="text" class="form-control col-4" [(ngModel)]="color">
-<div [style.background-color]="color">{{color}}</div>
+ <a href="/login">Go To Login!</a>
+ <button class="btn btn-primary" (click)="goToLogin()">
+    Go Back Home with TypeScript</button>
 
 
 
- <h3>Directives</h3>

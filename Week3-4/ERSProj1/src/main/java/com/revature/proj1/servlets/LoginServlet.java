@@ -38,9 +38,9 @@ public class LoginServlet extends HttpServlet {
 		// Validate user
 		User user = us.getUserByEmailPassword(email, password);
 		log.trace(user);
-		// Go back to login page if wrong email/pw combo
+		// Go back to login page if wrong email/pw combo OR if user is not approved!
 		// Implement error message if time permits
-		if (user == null) {
+		if (user == null || user.getApproved() == 0) {
 			req.getRequestDispatcher("index.html").forward(req, resp);
 		}
 		else {
@@ -49,8 +49,11 @@ public class LoginServlet extends HttpServlet {
 			log.trace("ADDING USER TO SESSION: " + session.getId());
 		}
 		// Employee login
+//		if (user.getRoll() == 1) {
+//			resp.sendRedirect("home.employeeView");
+//		}
 		if (user.getRoll() == 1) {
-			resp.sendRedirect("home.employeeView");
+			resp.sendRedirect("load-employee-home");
 		}
 		// Manager login
 		else if (user.getRoll() == 2) {
