@@ -7,8 +7,8 @@ import com.revature.proj1.DAO.UserDao;
 import com.revature.proj1.pojos.User;
 
 public class UserService {
-	static UserDao ud = new UserDao();
 	
+	static UserDao ud = new UserDao();
 	
 	/**
 	 * 

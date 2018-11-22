@@ -38,8 +38,16 @@
 	<url-pattern>/load-employee-home</url-pattern>
 </servlet-mapping>
   
+<servlet>
+	<servlet-name>ManagerHome</servlet-name>
+	<servlet-class>com.revature.proj1.servlets.LoadManagerHomeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>ManagerHome</servlet-name>
+	<url-pattern>/load-manager-home</url-pattern>
+</servlet-mapping>  
   
-  
+
   
   
   <welcome-file-list>

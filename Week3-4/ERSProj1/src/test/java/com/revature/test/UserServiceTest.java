@@ -27,7 +27,7 @@ public class UserServiceTest {
 	public void tearDown() throws Exception{
 		us = null;
 	}
-	
+
 	@Test
 	public void test() {
 		List<String> emails = us.getAllEmails();

@@ -39,26 +39,7 @@ public class GetUserServlet extends HttpServlet{
 		writer.write(userJson);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }

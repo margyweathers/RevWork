@@ -25,6 +25,12 @@ private static Logger log = Logger.getLogger(LoadEmployeeViewsServlet.class);
 		switch(req.getRequestURI()) {
 		case "/ERSProj1/front.employeeView":
 			return "employee-front";
+		case "/ERSProj1/all.employeeView":
+			return "employee-all";
+		case "/ERSProj1/past.employeeView":
+			return "employee-past";
+		case "/ERSProj1/submit.employeeView":
+			return "employee-submit";
 		}
 	
 			

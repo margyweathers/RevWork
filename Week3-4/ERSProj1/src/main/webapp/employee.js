@@ -3,7 +3,11 @@
  */
 window.onload = function(){
 	loadFrontView();
-	loadUser()
+	loadUser();
+	$('#homeNav').on('click', loadFrontView);
+	$('#allNav').on('click', loadAllView);
+	$('#pastNav').on('click', loadPastView);
+	$('#submitNav').on('click', loadSubmitView);
 }
 
 function loadFrontView(){
@@ -58,8 +62,20 @@ function loadPending(){
 			}
 		}
 	}
-	xhr.open("POST", "reimbursement-servlet");
-	xhr.send();	
+	xhr.open("POST", "get-pending-r");
+	xhr.send();		
+}
+
+function loadAllView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			$('#employeeView').html(xhr.responseText);
+			
+		}
+	}
+	xhr.open("GET", "all.employeeView", true);
+	xhr.send();
 	
 }
 

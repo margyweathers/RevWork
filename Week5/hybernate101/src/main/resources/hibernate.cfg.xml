@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!-- Configuration details for Hibernate application -->
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database details -->
+		<property name="driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/xe</property>
+		<property name="hibernate.connection.username">mweathers</property>
+		<property name="hibernate.connection.password">pass</property>
+		
+		<!-- Create/update/etc schema -->
+		<!-- 
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!-- show HQL commands as they're carried out in the console -->
+		<property name="show_sql">true</property>
+		
+		<!-- classes can be configured via annotations -->
+		<mapping class="com.ex.models.User"/>
+		<mapping class="com.ex.models.Post"/>
+		
+	</session-factory>
+</hibernate-configuration>
