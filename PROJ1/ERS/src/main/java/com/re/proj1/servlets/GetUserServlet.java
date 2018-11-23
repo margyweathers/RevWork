@@ -28,17 +28,19 @@ public class GetUserServlet extends HttpServlet{
 		User user = (User) session.getAttribute("user");
 		
 		// Sending wrong redirect?
-		if (user.equals(null)) {
+		if (user == null) {
 			log.trace("user is null");
 			resp.sendRedirect("login.welcomeView");
 		}
+		else {
+			log.trace("Got a user: " + user);
+			ObjectMapper mapper = new ObjectMapper();
+			String userJson = mapper.writeValueAsString(user);
+			PrintWriter writer = resp.getWriter();
+			resp.setContentType("application/json");
+			writer.write(userJson);
+		}
 		
-		log.trace("Got a user: " + user);
-		ObjectMapper mapper = new ObjectMapper();
-		String userJson = mapper.writeValueAsString(user);
-		PrintWriter writer = resp.getWriter();
-		resp.setContentType("application/json");
-		writer.write(userJson);
 	}
 
 

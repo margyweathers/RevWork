@@ -1,25 +1,17 @@
 /**
  * onload loads employee home view and initiates user as a global variable
  */
+
+
+
 window.onload = function(){
-	loadFrontView();
 	loadUser();
+	loadFrontView();
+
 	$('#homeNav').on('click', loadFrontView);
 	$('#allNav').on('click', loadAllView);
 	$('#pastNav').on('click', loadPastView);
 	$('#submitNav').on('click', loadSubmitView);
-}
-
-function loadFrontView(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			$('#employeeView').html(xhr.responseText);
-			
-		}
-	}
-	xhr.open("GET", "front.employeeView", true);
-	xhr.send();
 }
 
 function loadUser(){
@@ -38,32 +30,115 @@ function loadUser(){
 	xhr.send();	
 }
 
-function loadPending(){
+function loadFrontView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);	// log pending for debug
-			let pending = JSON.parse(xhr.responseText);
-			for (let r of pending){
-				var row = document.createElement("tr");
-				var date = document.createElement("td");
-				var type = document.createElement("td");
-				var amount = document.createElement("td");
-				var desc = document.createElement("td");
-				date.innerText = r.submitDate;
-				type.innerText = r.rType;
-				amount.innerText = r.amount;
-				desc.innerText = r.rDesc;
-				row.appendChild(date);
-				row.appendChild(type);
-				row.appendChild(amount);
-				row.appendChild(desc);
-				document.getElementById("rPendingTable").appendChild(row);
-			}
+			$('#employeeView').html(xhr.responseText);
+			loadPending(pendingCallback);
+		}
+	}
+	xhr.open("GET", "front.employeeView", true);
+	xhr.send();
+}
+
+
+function format(d){   
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+            '<td>Description:</td>' +
+            '<td>' + d.rDesc + '</td>' +
+        '</tr>' +
+    '</table>';  
+}
+
+
+// CODE TO POPULATE TABLE GOES HERE! Called by loadPending(callback) in loadFrontView() in window.onload();
+function pendingCallback(pending){
+	var rdata = pending;
+	// Manipulate reimbursement objects to dynamically load types
+//	getRType(rdata, TypeCallback)
+	var table = $('#example').DataTable({
+		"data": rdata,
+		select:"single",
+		"columns": [
+			{
+				"className": 'details-control',
+				"orderable": false,
+				"data": null,
+				"defaultContent": '',
+				"render": function () {
+					return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+				},
+				width:"15px"
+			},
+			{ "data": "submitDate" },
+			{ "data": "rType" },
+			{ "data": "amount" },
+			],
+			"order": [[1, 'asc']]
+	});
+//	Add event listener for opening and closing details
+	$('#example tbody').on('click', 'td.details-control', function () {
+		var tr = $(this).closest('tr');
+		var tdi = tr.find("i.fa");
+		var row = table.row(tr);
+
+		if (row.child.isShown()) {
+			// This row is already open - close it
+			row.child.hide();
+			tr.removeClass('shown');
+			tdi.first().removeClass('fa-minus-square');
+			tdi.first().addClass('fa-plus-square');
+		}
+		else {
+			// Open this row
+			row.child(format(row.data())).show();
+			tr.addClass('shown');
+			tdi.first().removeClass('fa-plus-square');
+			tdi.first().addClass('fa-minus-square');
+		}
+	});
+
+	table.on("user-select", function (e, dt, type, cell, originalEvent) {
+		if ($(cell.node()).hasClass("details-control")) {
+			e.preventDefault();
+		}
+	});	
+}
+
+function loadPending(callback){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var pending = JSON.parse(xhr.responseText);
+			callback(pending)
 		}
 	}
 	xhr.open("POST", "get-pending-by-author");
-	xhr.send();		
+	xhr.send();
+}
+
+// Reimbursement Type callback function
+function TypeCallback(rdata, types){
+	console.log(types);
+	console.log(rdata);
+	for (let r of rdata){
+		console.log((types[r.rType-1]).type);
+		r.rType = (types[r.rType-1]).type;
+	}
+}
+
+function getRType(rdata, callback){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		// "Unexpected end of JSON input??"
+		let types = JSON.parse(xhr.responseText);
+		callback(rdata, types);
+	}
+	xhr.open("GET", "r-type", true);
+	xhr.send();
 }
 
 function loadAllView(){
@@ -85,18 +160,6 @@ function loadPastView(){
 function loadSubmitView(){
 	
 }
-
-
-function getRType(id){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		
-	}
-	xhr.open("GET", "r-type", true);
-	xhr.send();
-}
-
-
 
 
 

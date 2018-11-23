@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Reimbursement {
 	
+
 	private int rId;
 	private int author;
 	private int rResolver;
@@ -118,8 +119,11 @@ public class Reimbursement {
 		Reimbursement.decf = decf;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Reimbursement [rId=" + rId + ", author=" + author + ", rResolver=" + rResolver + ", amount=" + amount
+				+ ", rType=" + rType + ", rStatus=" + rStatus + "]";
+	}	
 	
 	
 
