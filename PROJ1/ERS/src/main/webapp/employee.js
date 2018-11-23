@@ -1,13 +1,9 @@
 /**
  * onload loads employee home view and initiates user as a global variable
  */
-
-
-
 window.onload = function(){
 	loadUser();
 	loadFrontView();
-
 	$('#homeNav').on('click', loadFrontView);
 	$('#allNav').on('click', loadAllView);
 	$('#pastNav').on('click', loadPastView);
@@ -30,6 +26,9 @@ function loadUser(){
 	xhr.send();	
 }
 
+
+
+//////////////////////////////////////////////////////// FRONT VIEW //////////////////////////////////////////////////////////
 function loadFrontView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -42,7 +41,7 @@ function loadFrontView(){
 	xhr.send();
 }
 
-
+//Format's child rows. Used for all tables
 function format(d){   
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
@@ -53,14 +52,14 @@ function format(d){
     '</table>';  
 }
 
-
-// CODE TO POPULATE TABLE GOES HERE! Called by loadPending(callback) in loadFrontView() in window.onload();
+// CODE TO POPULATE PENDING TABLE GOES HERE! Called by loadPending(callback) in loadFrontView() in window.onload();
 function pendingCallback(pending){
 	var rdata = pending;
 	// Manipulate reimbursement objects to dynamically load types
 //	getRType(rdata, TypeCallback)
-	var table = $('#example').DataTable({
+	var table = $('#pending').DataTable({
 		"data": rdata,
+		retrieve: true,
 		select:"single",
 		"columns": [
 			{
@@ -80,7 +79,7 @@ function pendingCallback(pending){
 			"order": [[1, 'asc']]
 	});
 //	Add event listener for opening and closing details
-	$('#example tbody').on('click', 'td.details-control', function () {
+	$('#pending tbody').on('click', 'td.details-control', function () {
 		var tr = $(this).closest('tr');
 		var tdi = tr.find("i.fa");
 		var row = table.row(tr);
@@ -106,6 +105,7 @@ function pendingCallback(pending){
 			e.preventDefault();
 		}
 	});	
+	
 }
 
 function loadPending(callback){
@@ -113,7 +113,7 @@ function loadPending(callback){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var pending = JSON.parse(xhr.responseText);
-			callback(pending)
+			if(callback) callback(pending);		// if statement checks if function param exists?
 		}
 	}
 	xhr.open("POST", "get-pending-by-author");
@@ -129,7 +129,6 @@ function TypeCallback(rdata, types){
 		r.rType = (types[r.rType-1]).type;
 	}
 }
-
 function getRType(rdata, callback){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -141,17 +140,25 @@ function getRType(rdata, callback){
 	xhr.send();
 }
 
-function loadAllView(){
+
+//////////////////////////////////////////////////////// ALL VIEW /////////////////////////////////////////////////////////////
+function loadAllView(callback){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			$('#employeeView').html(xhr.responseText);
-			
+			loadAll(callback);
 		}
 	}
-	xhr.open("GET", "all.employeeView", true);
+	xhr.open("POST", "get-all-by-author", true);
 	xhr.send();	
 }
+
+function loadAll(allCallback){
+	
+}
+
+
 
 function loadPastView(){
 	
