@@ -17,7 +17,7 @@ import com.revature.proj1.service.UserService;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	
-	static UserService us = new UserService();
+	private static UserService us = new UserService();
 	private static Logger log = Logger.getLogger(LoginServlet.class);
 	
 	@Override

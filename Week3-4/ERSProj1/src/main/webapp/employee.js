@@ -62,7 +62,7 @@ function loadPending(){
 			}
 		}
 	}
-	xhr.open("POST", "get-pending-r");
+	xhr.open("POST", "get-pending-by-author");
 	xhr.send();		
 }
 
@@ -75,7 +75,20 @@ function loadAllView(){
 		}
 	}
 	xhr.open("GET", "all.employeeView", true);
-	xhr.send();
+	xhr.send();	
+}
+
+function getRType(typeId){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let types = JSON.parse(xhr.responseText);
+			console.log(types);
+		}
+	}
+
+	xhr.open("GET", "r-types", true);
+	xhr.send();	
 	
 }
 

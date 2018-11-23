@@ -20,7 +20,8 @@ import com.revature.proj1.pojos.User;
 import com.revature.proj1.service.ReimbursementService;
 
 
-@WebServlet({"/get-pending-by-author","/get-past-by-author", "/get-past-by-author" })
+// @WebServlet({"/get-pending-by-author","/get-past-by-author", "/get-past-by-author" })
+@WebServlet("/get-pending-by-author")
 public class ReimbursementsServlet extends HttpServlet{
 	
 	private static Logger log = Logger.getLogger(ReimbursementsServlet.class);

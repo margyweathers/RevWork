@@ -8,8 +8,6 @@ public class RType {
 	public RType() {}
 	
 	public RType(int id, String type) {
-		super();
-		this.id = id;
 		this.type = type;
 	}
 

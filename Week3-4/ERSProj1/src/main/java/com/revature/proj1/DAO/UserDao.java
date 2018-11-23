@@ -105,7 +105,7 @@ public class UserDao {
 	 * 
 	 * @return List of all emails in the DB. Null if none exist
 	 */
-	public List<String> findAllEmails(){
+	public List<String> findAllEmails(){ 
 		List<String> emails = new ArrayList<String>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			String sql = "{CALL GET_USR_EMAILS(?)}";
