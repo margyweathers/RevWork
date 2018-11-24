@@ -25,6 +25,7 @@ function createAccount(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			$('#welcomeView').html(xhr.responseText);
+			$('#loginPage').on('click', loadWelcomeView);
 		}
 	}
 	xhr.open("GET", "create-account.welcomeView", true);
