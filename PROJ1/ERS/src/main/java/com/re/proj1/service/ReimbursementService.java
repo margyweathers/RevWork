@@ -49,5 +49,10 @@ public class ReimbursementService {
 		}		
 		return past;
 	}
+	
+	public Reimbursement submit(Reimbursement r) {
+		rd.create(r);
+		return r;
+	}
 
 }

@@ -16,18 +16,20 @@ public class Reimbursement {
 	private int rType;
 	private String rDesc;
 	private int rStatus;
-	static SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy HH:mm");
-	static DecimalFormat decf = new DecimalFormat("0.00"); 
+	static SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
+	
 	
 	public Reimbursement() {}
 	
-	public Reimbursement(int author, double amount, int rType, String rDesc, int rStatus) {
+	// Not including: rId, rResolver, resolveDate.
+	// rStatus and sumbitDate automatically assigned in constructor
+	public Reimbursement(int author, double amount, int rType, String rDesc) {
 		super();
 		this.author = author;
 		this.amount = amount;
 		this.rType = rType;
 		this.rDesc = rDesc;
-		this.rStatus = rStatus;
+		this.rStatus = 1;		// Always created as pending request
 		submitDate = df.format(new Date());
 	}
 
@@ -111,13 +113,6 @@ public class Reimbursement {
 		Reimbursement.df = df;
 	}
 
-	public static DecimalFormat getDecf() {
-		return decf;
-	}
-
-	public static void setDecf(DecimalFormat decf) {
-		Reimbursement.decf = decf;
-	}
 	
 	@Override
 	public String toString() {

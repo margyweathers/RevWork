@@ -20,7 +20,8 @@ SELECT * FROM REIMBURSEMENTS WHERE R_RESOLVER = 22 ORDER BY R_ID;
 SELECT * FROM USR;
 SELECT * FROM USR WHERE EMAIL = 'mweathers@gmail.com';
 SELECT EMAIL FROM USR;
-update usr set roll=2 where user_id=22;
+delete from reimbursements where r_id = 27;
+
 
 
 

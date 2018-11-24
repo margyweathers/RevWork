@@ -60,6 +60,7 @@ function loadFrontView(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			$('#employeeView').html(xhr.responseText);
+			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.');
 			loadPending(pendingCallback);
 		}
 	}
@@ -148,9 +149,11 @@ function TypeCallback(rdata, types){
 function getRType(rdata, callback){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
-		// "Unexpected end of JSON input??"
-		let types = JSON.parse(xhr.responseText);
-		callback(rdata, types);
+		if(xhr.readyState == 4 && xhr.status == 200){
+			// "Unexpected end of JSON input??"
+			let types = JSON.parse(xhr.responseText);
+			if(callback) callback(rdata, types);
+		}
 	}
 	xhr.open("GET", "r-type", true);
 	xhr.send();
@@ -250,6 +253,7 @@ function loadSubmitView(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			$('#employeeView').html(xhr.responseText);
 			$('#cancelSubmit').on('click', loadFrontView);
+			$('#submitRequest').on('click', submitRequest)
 			loadRTypes();
 		}
 	}
@@ -273,7 +277,48 @@ function loadRTypes(){
 	}
 	xhr.open("POST", "r-type", true);	
 	xhr.send();
+}
 
+function submitRequest(){
+	var t = $('#rTypeSelect').val();
+	t = Number(t);
+	var a = $('#amount').val();
+	a = Number(a);
+	var d = $('#description').val();
+	var obj = {
+			amount: a,
+			rType: t,
+			rDesc: d
+	}
+	var incomplete = JSON.stringify(obj);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			loadSubmittedView(t,a,d);
+		}
+	}
+	xhr.open("POST", "submit-request");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(incomplete);
+}
+
+
+function loadSubmittedView(t,a,d){
+	console.log("In loadSubmittedView()");
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log("are these variables being passed?");
+			console.log(t);
+			console.log(a);
+			console.log(d);
+			$('#employeeView').html(xhr.responseText);
+			$('rType-confirmation').html(t);
+			$('amount-confirmation').html(a);
+		}
+	}
+	xhr.open("GET", "request-submitted.employeeView", true);
+	xhr.send();	
 }
 
 

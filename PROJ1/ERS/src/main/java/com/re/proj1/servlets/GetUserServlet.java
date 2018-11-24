@@ -30,7 +30,8 @@ public class GetUserServlet extends HttpServlet{
 		// Sending wrong redirect?
 		if (user == null) {
 			log.debug("user is null. FIX THIS!");
-			resp.sendRedirect("/login");
+			session.invalidate();
+			req.getRequestDispatcher("index.html").forward(req, resp);
 		}
 		else {
 			log.trace("Got a user: " + user);

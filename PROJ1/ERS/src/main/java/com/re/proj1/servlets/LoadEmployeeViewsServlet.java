@@ -30,6 +30,8 @@ private static Logger log = Logger.getLogger(LoadEmployeeViewsServlet.class);
 			return "employee-past";
 		case "/ERS/submit.employeeView":
 			return "employee-submit";
+		case "/ERS/request-submitted.employeeView":
+			return "employee-request-submitted";
 		}
 	
 			
