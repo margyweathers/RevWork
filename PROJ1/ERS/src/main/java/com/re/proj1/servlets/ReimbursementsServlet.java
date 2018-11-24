@@ -24,38 +24,44 @@ import com.re.proj1.service.ReimbursementService;
 // @WebServlet(urlPatterns = {"/get-pending-by-author", "/get-past-by-author", "get-all-by-author"})
 // @WebServlet({"/get-pending-by-author","/get-past-by-author", "/get-all-by-author" })
 public class ReimbursementsServlet extends HttpServlet{
-	
+
 	private static Logger log = Logger.getLogger(ReimbursementsServlet.class);
 	private static ReimbursementService rs = new ReimbursementService();
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
-		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
-		String requestType = req.getRequestURI();
-		log.trace(requestType);
-		switch(requestType) {
-		case "/ERS/get-pending-by-author":
-			reimbs = rs.getPendingReimbursementsByAuthor(user.getUserId());
-			break;
-		case "/ERS/get-past-by-author":
-			reimbs = rs.getPastReimbursementsByAuthor(user.getUserId());
-		case "/ERS/get-all-by-author":
-			reimbs = rs.getAllReimbursements();
-			break;
+
+		if(user == null) {
+			resp.sendRedirect("login");
 		}
-		
-		
-		ObjectMapper mapper = new ObjectMapper();
-		String reimsJson = mapper.writeValueAsString(reimbs);
-		log.debug(reimbs);
-		PrintWriter writer = resp.getWriter();
-		resp.setContentType("application/json");
-		writer.write(reimsJson);
-		
+		else {
+			List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
+			String requestType = req.getRequestURI();
+			log.trace(requestType);
+			switch(requestType) {
+			case "/ERS/get-pending-by-author":
+				reimbs = rs.getPendingReimbursementsByAuthor(user.getUserId());
+				break;
+			case "/ERS/get-past-by-author":
+				reimbs = rs.getPastReimbursementsByAuthor(user.getUserId());
+			case "/ERS/get-all-by-author":
+				reimbs = rs.getAllReimbursements();
+				break;
+			}
+
+			ObjectMapper mapper = new ObjectMapper();
+			String reimsJson = mapper.writeValueAsString(reimbs);
+			log.debug(reimsJson);
+			PrintWriter writer = resp.getWriter();
+			resp.setContentType("application/json");
+			writer.write(reimsJson);	
+		}
+
+
 	}
-	
+
 
 }
 

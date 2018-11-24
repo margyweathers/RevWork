@@ -24,12 +24,14 @@ public class RTypeServlet extends HttpServlet{
 	private static RTypeService typeService = new RTypeService();
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<RType> types = new ArrayList<RType>();
 		types = typeService.getAll();
-		log.debug(types);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		String typesJson = mapper.writeValueAsString(types);
+		log.debug(typesJson);
+		
 		PrintWriter writer = resp.getWriter();
 		resp.setContentType("application/json");
 		writer.write(typesJson);

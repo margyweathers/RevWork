@@ -19,7 +19,6 @@ function loadUser(){
 			// String interpolation doesn't work?
 //			$('#welcomeMessage').html(`Welcome, ${user.firstName}. Here are your pending reimbursement requests.`);
 			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.');
-			loadPending();
 		}
 	}
 	xhr.open("GET", "user-servlet", true);
@@ -244,18 +243,52 @@ function loadPastView(){
 	
 }
 
+//////////////////////////////////////////////////////// SUBMIT VIEW /////////////////////////////////////////////////////////////
 function loadSubmitView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			$('#employeeView').html(xhr.responseText);
-			loadAll(allCallback);
+			$('#cancelSubmit').on('click', loadFrontView);
+			loadRTypes();
 		}
 	}
 	xhr.open("GET", "submit.employeeView", true);
-	xhr.send();	
-	
+	xhr.send();		
 }
+
+function loadRTypes(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var types = JSON.parse(xhr.responseText);
+			console.log(types);	
+			for (t of types){
+				var opt = document.createElement("option");
+				opt.textContent = t.type;
+				opt.value = t.id;
+				$('#rTypeSelect').append(opt);
+			}			
+		}		
+	}
+	xhr.open("POST", "r-type", true);	
+	xhr.send();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
