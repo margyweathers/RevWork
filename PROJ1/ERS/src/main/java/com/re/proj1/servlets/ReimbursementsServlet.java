@@ -52,17 +52,18 @@ public class ReimbursementsServlet extends HttpServlet{
 			case "/ERS/get-all-pending":
 				reimbs = rs.getAllPendingReimbursements();
 				break;
-			case "ERS/get-all-past":
+			case "/ERS/get-all-past":
 				reimbs = rs.getAllPastReimbursements();
 				break;
 			}
-
+			
 			ObjectMapper mapper = new ObjectMapper();
 			String reimsJson = mapper.writeValueAsString(reimbs);
 			log.debug(reimsJson);
 			PrintWriter writer = resp.getWriter();
 			resp.setContentType("application/json");
-			writer.write(reimsJson);	
+			writer.write(reimsJson);
+
 		}
 
 

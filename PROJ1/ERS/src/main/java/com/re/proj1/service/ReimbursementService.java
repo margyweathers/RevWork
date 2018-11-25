@@ -9,6 +9,11 @@ import com.re.proj1.pojos.Reimbursement;
 
 public class ReimbursementService {
 	static ReimbursementDao rd = new ReimbursementDao();
+
+	public Reimbursement getReimbursementById(int id) {
+		Reimbursement r = rd.findById(id);
+		return r;
+	}
 	
 	public List<Reimbursement> getAllReimbursements(){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
@@ -69,6 +74,11 @@ public class ReimbursementService {
 	
 	public Reimbursement submit(Reimbursement r) {
 		rd.create(r);
+		return r;
+	}
+	
+	public Reimbursement update(Reimbursement r) {
+		rd.update(r);
 		return r;
 	}
 

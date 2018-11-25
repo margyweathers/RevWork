@@ -80,6 +80,10 @@ public class Reimbursement {
 	public void setResolveDate(String resolveDate) {
 		this.resolveDate = resolveDate;
 	}
+	
+	public void createResolveDate() {
+		this.resolveDate = df.format(new Date());
+	}
 
 	public int getrType() {
 		return rType;

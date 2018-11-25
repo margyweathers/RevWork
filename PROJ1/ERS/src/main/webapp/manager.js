@@ -38,7 +38,8 @@ function format(d){
             '<td>' + d.rDesc + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><button type="button" class="btn btn-success btn-sm">Success</button>&nbsp&nbsp<button type="button" class="btn btn-danger btn-sm">Danger</button></td>' +
+        '<td id="resolve' + d.rId + '"><button onclick="approveRequest(' + d.rId + ')" type="button" class="btn btn-success btn-sm">Approve</button>&nbsp&nbsp' +
+            '<button onclick="denyRequest(' + d.rId + ')" type="button" class="btn btn-danger btn-sm">Deny</button></td>' +
         '</tr>' +
     '</table>'; 
 	}
@@ -56,11 +57,47 @@ function format(d){
         
         '<tr>' +
         '<td>Resolved By:</td>' +
-        '<td>' + d.rResolver + ' ('+ d.resolveDate + ')' + '</td>' +
+        '<td>' + d.rResolver + ' on'+ d.resolveDate + '</td>' +
         '</tr>' +
         
     '</table>'; 
 	}
+}
+
+
+function approveRequest(id){
+	var obj ={
+			rId : id
+	}
+	var idToApprove = JSON.stringify(obj);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			$('#resolve' + id).html('<i>Request Approved</i>');
+			updateData();
+		}		
+	}
+	xhr.open("POST", "approve-request", true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(idToApprove);		
+}
+function denyRequest(id){
+	$('#resolve' + id).html('<i>Request Denied</i>');
+	console.log("in denyRequest()")
+	console.log(id);	
+}
+
+function updateData(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var pending = JSON.parse(xhr.responseText);
+			rdata = pending;
+			console.log(rdata);
+		}
+	}
+	xhr.open("POST", "get-all-pending");
+	xhr.send();	
 }
 
 ////////////////////////////////////////////////////////FRONT VIEW //////////////////////////////////////////////////////////
@@ -124,6 +161,7 @@ function pendingCallback(pending){
 			tdi.first().removeClass('fa-plus-square');
 			tdi.first().addClass('fa-minus-square');
 		}
+		$('#approve').on('click', approveRequest)
 	});
 
 	table.on("user-select", function (e, dt, type, cell, originalEvent) {
@@ -169,8 +207,6 @@ function getRType(rdata, callback){
 
 
 
-
-
 ////////////////////////////////////////////////////////PAST VIEW //////////////////////////////////////////////////////////
 function loadPastView(){
 	var xhr = new XMLHttpRequest();
@@ -185,8 +221,7 @@ function loadPastView(){
 }
 
 function pastCallback(past){
-	rdata = pending;		// Can this be global?
-
+	rdata = past;		// Can this be global?
 	var table = $('#pending').DataTable({
 		"data": rdata,
 		retrieve: true,

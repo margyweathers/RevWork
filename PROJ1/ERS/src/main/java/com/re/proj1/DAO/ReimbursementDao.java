@@ -13,6 +13,33 @@ import com.re.proj1.util.ConnectionFactory;
 
 public class ReimbursementDao {
 
+	public Reimbursement findById(int id) {
+		Reimbursement r = null;
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);		// Prepared Statement
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				r = new Reimbursement();
+				r.setrId(id);
+				r.setAuthor(rs.getInt(2));
+				r.setrResolver(rs.getInt(3));
+				r.setAmount(rs.getDouble(4));
+				r.setSubmitDate(rs.getString(5));
+				r.setResolveDate(rs.getString(6));
+				r.setrType(rs.getInt(7));
+				r.setrDesc(rs.getString(8));
+				r.setrStatus(rs.getInt(9));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return r;
+	}
+
+	
 	/**
 	 * 
 	 * @return All Reimbursements. Null if none exist

@@ -21,7 +21,7 @@ SELECT * FROM USR;
 SELECT * FROM USR WHERE EMAIL = 'mweathers@gmail.com';
 SELECT EMAIL FROM USR;
 delete from reimbursements where r_id = 27;
-
+update reimbursements set r_status = 1 where r_id = 3;
 
 
 -----------------------------STORED PROCEDURES----------------------------------
