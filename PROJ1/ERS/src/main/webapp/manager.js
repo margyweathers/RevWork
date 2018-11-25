@@ -1,13 +1,14 @@
 /**
- * onload loads employee home view and initiates user as a global variable
+ * 
  */
 window.onload = function(){
 	loadUser();
 	loadFrontView();
 	$('#homeNav').on('click', loadFrontView);
-	$('#allNav').on('click', loadAllView);
 	$('#pastNav').on('click', loadPastView);
-	$('#submitNav').on('click', loadSubmitView);
+	$('#resolvedNav').on('click', loadResolvedView);
+	$('#employeeNav').on('click', loadEmployeesView);
+	$('#pendingUsersNav').on('click', loadPendingUsersView);
 }
 
 function loadUser(){
@@ -18,7 +19,8 @@ function loadUser(){
 			console.log(user);
 			// String interpolation doesn't work?
 //			$('#welcomeMessage').html(`Welcome, ${user.firstName}. Here are your pending reimbursement requests.`);
-			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.');
+			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are all pending reimbursement requests.' +
+					'<br>Expand a request to approve or deny');
 		}
 	}
 	xhr.open("GET", "user-servlet", true);
@@ -35,9 +37,16 @@ function format(d){
             '<td>Description:</td>' +
             '<td>' + d.rDesc + '</td>' +
         '</tr>' +
+        '<tr>' +
+        '<td><button type="button" class="btn btn-success btn-sm">Success</button>&nbsp&nbsp<button type="button" class="btn btn-danger btn-sm">Danger</button></td>' +
+        '</tr>' +
     '</table>'; 
 	}
-	// child rows for approved/denied reimbursements
+	// child rows for personally resolved
+	else if ((d.rStatus == 2 || d.rStatus == 3) && d.rResolver == user.rId){
+		
+	}
+	// child rows for all approved/denied
 	else{
 		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
@@ -54,25 +63,24 @@ function format(d){
 	}
 }
 
-//////////////////////////////////////////////////////// FRONT VIEW //////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////FRONT VIEW //////////////////////////////////////////////////////////
 function loadFrontView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			$('#employeeView').html(xhr.responseText);
-//			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.');
+			$('#managerView').html(xhr.responseText);
+			// Why isn't user defined here?
 			loadPending(pendingCallback);
 		}
 	}
-	xhr.open("GET", "front.employeeView", true);
+	xhr.open("GET", "front.managerView", true);
 	xhr.send();
 }
 
-// CODE TO POPULATE PENDING TABLE GOES HERE! Called by loadPending(callback) in loadFrontView() in window.onload();
 function pendingCallback(pending){
 	rdata = pending;		// Can this be global?
 	// Manipulate reimbursement objects to dynamically load types
-	getRType(rdata, typeCallback)
+//	getRType(rdata, typeCallback)
 	console.log(rdata);
 	var table = $('#pending').DataTable({
 		"data": rdata,
@@ -89,9 +97,10 @@ function pendingCallback(pending){
 				},
 				width:"15px"
 			},
-			{ "data": "submitDate" },
+			{ "data": "author" },
 			{ "data": "rType" },
 			{ "data": "amount" },
+			{ "data": "submitDate"}
 			],
 			"order": [[1, 'asc']]
 	});
@@ -133,11 +142,11 @@ function loadPending(callback){
 			if(callback) callback(pending);		// if statement checks if function param exists?
 		}
 	}
-	xhr.open("POST", "get-pending-by-author");
+	xhr.open("POST", "get-all-pending");
 	xhr.send();
 }
 
-// Reimbursement Type callback function
+//Reimbursement Type callback function
 function typeCallback(data, types){
 	for (let r of data){
 		console.log((types[r.rType-1]).type);
@@ -159,24 +168,26 @@ function getRType(rdata, callback){
 }
 
 
-//////////////////////////////////////////////////////// ALL VIEW /////////////////////////////////////////////////////////////
-function loadAllView(){
+
+
+
+////////////////////////////////////////////////////////PAST VIEW //////////////////////////////////////////////////////////
+function loadPastView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			$('#employeeView').html(xhr.responseText);
-			loadAll(allCallback);
+			$('#managerView').html(xhr.responseText);
+			loadPast(pastCallback);
 		}
 	}
-	xhr.open("GET", "all.employeeView", true);
+	xhr.open("GET", "past.managerView", true);
 	xhr.send();	
 }
-// POPULATE 'ALL' TABLE
-function allCallback(all){
-	var rdata = all;
-	// Manipulate reimbursement objects to dynamically load types
-//	getRType(rdata, TypeCallback)
-	var table = $('#all').DataTable({
+
+function pastCallback(past){
+	rdata = pending;		// Can this be global?
+
+	var table = $('#pending').DataTable({
 		"data": rdata,
 		retrieve: true,
 		select:"single",
@@ -191,15 +202,17 @@ function allCallback(all){
 				},
 				width:"15px"
 			},
+			{ "data": "author" },
 			{ "data": "rType" },
 			{ "data": "amount" },
-			{ "data": "rStatus" },
-			{ "data": "submitDate"}
+			{ "data": "submitDate"},
+			{ "data": "resolveDate"},
+			{ "data": "rStatus"}
 			],
 			"order": [[1, 'asc']]
 	});
 //	Add event listener for opening and closing details
-	$('#all tbody').on('click', 'td.details-control', function () {
+	$('#pending tbody').on('click', 'td.details-control', function () {
 		var tr = $(this).closest('tr');
 		var tdi = tr.find("i.fa");
 		var row = table.row(tr);
@@ -225,112 +238,33 @@ function allCallback(all){
 			e.preventDefault();
 		}
 	});	
-}
-
-function loadAll(callback){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var all = JSON.parse(xhr.responseText);
-			if(callback) callback(all);		// if statement checks if function param exists
-		}
-	}
-	xhr.open("POST", "get-all-by-author", true);
-	xhr.send();
-}
-
-
-
-function loadPastView(){
 	
 }
 
-//////////////////////////////////////////////////////// SUBMIT VIEW /////////////////////////////////////////////////////////////
-function loadSubmitView(){
+function loadPast(callback){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			$('#employeeView').html(xhr.responseText);
-			$('#cancelSubmit').on('click', loadFrontView);
-			$('#submitRequest').on('click', submitRequest)
-			loadRTypes();
+			var past = JSON.parse(xhr.responseText);
+			if(callback) callback(past);		// if statement checks if function param exists?
 		}
 	}
-	xhr.open("GET", "submit.employeeView", true);
-	xhr.send();		
-}
-
-function loadRTypes(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var types = JSON.parse(xhr.responseText);
-			console.log(types);	
-			for (t of types){
-				var opt = document.createElement("option");
-				opt.textContent = t.type;
-				opt.value = t.id;
-				$('#rTypeSelect').append(opt);
-			}			
-		}		
-	}
-	xhr.open("POST", "r-type", true);	
+	xhr.open("POST", "get-all-past", true);
 	xhr.send();
 }
 
-function submitRequest(){
-	var t = $('#rTypeSelect').val();
-	t = Number(t);
-	var a = $('#amount').val();
-	a = Number(a);
-	var d = $('#description').val();
-	var obj = {
-			amount: a,
-			rType: t,
-			rDesc: d
-	}
-	var incomplete = JSON.stringify(obj);
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4){
-			loadSubmittedView(t,a,d);
-		}
-	}
-	xhr.open("POST", "submit-request");
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.send(incomplete);
+function loadResolvedView(){
+	
+}
+
+function loadEmployeesView(){
+	
 }
 
 
-function loadSubmittedView(t,a,d){
-	console.log("In loadSubmittedView()");
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log("are these variables being passed?");
-			console.log(t);
-			console.log(a);
-			console.log(d);
-			$('#employeeView').html(xhr.responseText);
-			$('rType-confirmation').html(t);
-			$('amount-confirmation').html(a);
-		}
-	}
-	xhr.open("GET", "request-submitted.employeeView", true);
-	xhr.send();	
+function loadPendingUsersView(){
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -24,7 +24,7 @@ public class RTypeServlet extends HttpServlet{
 	private static RTypeService typeService = new RTypeService();
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<RType> types = new ArrayList<RType>();
 		types = typeService.getAll();
 		

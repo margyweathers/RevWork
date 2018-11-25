@@ -16,6 +16,18 @@ public class ReimbursementService {
 		return reimbs;
 	}
 	
+	public List<Reimbursement> getAllPendingReimbursements(){
+		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
+		reimbs = rd.findAllPending();
+		return reimbs;
+	}
+	
+	public List<Reimbursement> getAllPastReimbursements(){
+		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
+		reimbs = rd.findAllPast();
+		return reimbs;
+	}
+	
 	public List<Reimbursement> getReimbursementsByAuthor(int author){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		reimbs= rd.findByAuthorId(author);
@@ -48,6 +60,11 @@ public class ReimbursementService {
 			}
 		}		
 		return past;
+	}
+	
+	public List<Reimbursement> getResolvedByManager(int resolver){
+		List<Reimbursement> resolved = rd.findByResolverId(resolver);
+		return resolved;
 	}
 	
 	public Reimbursement submit(Reimbursement r) {

@@ -42,6 +42,56 @@ public class ReimbursementDao {
 		return reimbs;
 	}
 	
+	public List<Reimbursement> findAllPending(){
+		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_STATUS = 1 ORDER BY R_ID";
+			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				Reimbursement r = new Reimbursement();
+				r.setrId(rs.getInt(1));
+				r.setAuthor(rs.getInt(2));
+				r.setrResolver(rs.getInt(3));
+				r.setAmount(rs.getDouble(4));
+				r.setSubmitDate(rs.getString(5));
+				r.setResolveDate(rs.getString(6));
+				r.setrType(rs.getInt(7));
+				r.setrDesc(rs.getString(8));
+				r.setrStatus(rs.getInt(9));
+				reimbs.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimbs;
+	}
+	
+	public List<Reimbursement> findAllPast(){
+		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_STATUS = 2 OR R_STATUS = 3 ORDER BY R_ID";
+			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				Reimbursement r = new Reimbursement();
+				r.setrId(rs.getInt(1));
+				r.setAuthor(rs.getInt(2));
+				r.setrResolver(rs.getInt(3));
+				r.setAmount(rs.getDouble(4));
+				r.setSubmitDate(rs.getString(5));
+				r.setResolveDate(rs.getString(6));
+				r.setrType(rs.getInt(7));
+				r.setrDesc(rs.getString(8));
+				r.setrStatus(rs.getInt(9));
+				reimbs.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimbs;
+	}
+	
 	public List<Reimbursement> findByAuthorId(int author){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){

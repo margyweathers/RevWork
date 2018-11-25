@@ -24,7 +24,6 @@ delete from reimbursements where r_id = 27;
 
 
 
-
 -----------------------------STORED PROCEDURES----------------------------------
 CREATE OR REPLACE PROCEDURE GET_USR_EMAILS
 (TRANS_CURSOR OUT SYS_REFCURSOR)

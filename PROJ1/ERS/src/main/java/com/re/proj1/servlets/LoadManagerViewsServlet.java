@@ -22,9 +22,18 @@ private static Logger log = Logger.getLogger(LoadManagerViewsServlet.class);
 	
 	static String process(HttpServletRequest req, HttpServletResponse resp) {
 		switch(req.getRequestURI()) {
-		case "/ERSProj1/home.managerView":
-			return "manager-home";
+		case "/ERS/front.managerView":
+			return "manager-front";
+		case "/ERS/past.managerView":
+			return "manager-past";
+		case "/ERS/resolved.managerView":
+			return "manager-resolved";
+		case "/ERS/employees.managerView":
+			return "manager-employees";
+		case "/ERS/pendingUsers.managerView":
+			return "manager-pending-users";
 		}
+		
 			
 		return null;
 	}
