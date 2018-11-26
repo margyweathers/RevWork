@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.re.proj1.DAO.ReimbursementDao;
 import com.re.proj1.pojos.Reimbursement;
 
 public class ReimbursementService {
+	
+	Logger log = Logger.getLogger(ReimbursementService.class);
 	static ReimbursementDao rd = new ReimbursementDao();
 
 	public Reimbursement getReimbursementById(int id) {
@@ -36,6 +40,11 @@ public class ReimbursementService {
 	public List<Reimbursement> getReimbursementsByAuthor(int author){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		reimbs= rd.findByAuthorId(author);
+		return reimbs;
+	}
+	
+	public List<Reimbursement> getReimbursementsByResolver(int resolver){
+		List<Reimbursement> reimbs = rd.findByResolverId(resolver);
 		return reimbs;
 	}
 	

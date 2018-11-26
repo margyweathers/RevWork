@@ -16,7 +16,7 @@ import com.re.proj1.pojos.Reimbursement;
 import com.re.proj1.pojos.User;
 import com.re.proj1.service.ReimbursementService;
 
-@WebServlet("/approve-request")
+@WebServlet({"/approve-request", "/deny-request"})
 public class ResolveRequestServlet extends HttpServlet {
 	
 	private static Logger log = Logger.getLogger(ResolveRequestServlet.class);
@@ -35,16 +35,21 @@ public class ResolveRequestServlet extends HttpServlet {
 			ObjectMapper mapper = new ObjectMapper();
 			String requestType = req.getRequestURI();
 			log.trace(requestType);
+			Reimbursement onlyId = mapper.readValue(req.getInputStream(), Reimbursement.class);
+			int id = onlyId.getrId();
+			Reimbursement r = rs.getReimbursementById(id);
 			switch(requestType) {
 			case "/ERS/approve-request":
-				Reimbursement onlyId = mapper.readValue(req.getInputStream(), Reimbursement.class);
-				int id = onlyId.getrId();
-				log.debug("rId = " + id);
-				Reimbursement r = rs.getReimbursementById(id);
 				r.setrStatus(2);	// 2 = APPROVED
 				r.createResolveDate();
 				r.setrResolver(user.getUserId());
 				rs.update(r);	
+				break;
+			case "/ERS/deny-request":
+				r.setrStatus(3);	// 3 = DENIED
+				r.createResolveDate();
+				r.setrResolver(user.getUserId());
+				rs.update(r);
 				break;
 			}
 		}

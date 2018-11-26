@@ -14,15 +14,15 @@ INSERT INTO REIMBURSEMENTS (AUTHOR, AMOUNT, SUBMIT_DATE, R_TYPE, R_DESC, R_STATU
 update reimbursements set r_desc='another pending request' where r_id=4;
 SELECT * FROM STATUS_TYPE ORDER BY STATUS_TYPE_ID;
 SELECT * FROM REIMBURSEMENT_TYPE ORDER BY R_TYPE_ID;
-SELECT * FROM REIMBURSEMENTS ORDER BY R_ID;
 SELECT * FROM REIMBURSEMENTS WHERE AUTHOR = 21 ORDER BY R_ID;
 SELECT * FROM REIMBURSEMENTS WHERE R_RESOLVER = 22 ORDER BY R_ID;
 SELECT * FROM USR;
 SELECT * FROM USR WHERE EMAIL = 'mweathers@gmail.com';
 SELECT EMAIL FROM USR;
 delete from reimbursements where r_id = 27;
-update reimbursements set r_status = 1 where r_id = 3;
-
+SELECT * FROM REIMBURSEMENTS ORDER BY R_ID;
+update reimbursements set r_status = 1 where r_id = 4;
+delete from reimbursements where r_id = 3;
 
 -----------------------------STORED PROCEDURES----------------------------------
 CREATE OR REPLACE PROCEDURE GET_USR_EMAILS

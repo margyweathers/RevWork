@@ -19,7 +19,7 @@ import com.re.proj1.pojos.Reimbursement;
 import com.re.proj1.pojos.User;
 import com.re.proj1.service.ReimbursementService;
 
-@WebServlet({"/get-pending-by-author","/get-all-by-author", "/get-all-pending", "/get-all-past"})
+@WebServlet({"/get-pending-by-author","/get-all-by-author", "/get-all-pending", "/get-all-past", "/get-past-by-resolver"})
 // @WebServlet("/get-pending-by-author")
 // @WebServlet(urlPatterns = {"/get-pending-by-author", "/get-past-by-author", "get-all-by-author"})
 // @WebServlet({"/get-pending-by-author","/get-past-by-author", "/get-all-by-author" })
@@ -54,6 +54,9 @@ public class ReimbursementsServlet extends HttpServlet{
 				break;
 			case "/ERS/get-all-past":
 				reimbs = rs.getAllPastReimbursements();
+				break;
+			case "/ERS/get-past-by-resolver":
+				reimbs = rs.getReimbursementsByResolver(user.getUserId());
 				break;
 			}
 			
