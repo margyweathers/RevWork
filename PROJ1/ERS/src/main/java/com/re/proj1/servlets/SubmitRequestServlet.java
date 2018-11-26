@@ -35,17 +35,6 @@ public class SubmitRequestServlet extends HttpServlet{
 		Reimbursement r = new Reimbursement(author, incomplete.getAmount(), incomplete.getrType(), incomplete.getrDesc());
 		r = rs.submit(r);
 		log.trace("created a reimbursement request: " + r);
-		
-		
-//		String typeString = req.getParameter("rTypeSelect");
-//		log.trace(typeString);									// Fix no selection bug
-//		int type = Integer.parseInt(typeString);
-//		double amount = Double.parseDouble(req.getParameter("amount"));
-//		String desc = req.getParameter("description");
-//		Reimbursement r = new Reimbursement(author, amount, type, desc);
-//		r = rs.submit(r);		
-//		req.getRequestDispatcher("partials/employee-request-submitted.html").forward(req,resp);
-		
-		
+				
 	}
 }

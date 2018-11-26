@@ -1,6 +1,7 @@
 package com.re.proj1.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.re.proj1.DAO.UserDao;
@@ -43,6 +44,41 @@ public class UserService {
 		emails = ud.findAllEmails();
 		return emails;
 	}
+	
+	public List<User> getAllUsers(){
+		List<User> users = ud.findAll();
+		return users;
+	}
+	
+	public List<User> getAllUsersExcludeCurrent(int current){
+		List<User> users = this.getAllUsers();
+		User u = null;
+		Iterator<User> itr = users.iterator();
+		while (itr.hasNext()) {
+			u = itr.next();
+			if (u.getUserId() == current || u.getApproved() == 0) {			// Remove current manager and unapproved employees
+				itr.remove();
+			}	
+		}
+		return users;
+	}
+	
+	
+	public List<User> getAllPendingUsers(){
+		User u = null;
+		List<User> users = new ArrayList<User>();
+		List<User> all = this.getAllUsers();
+		Iterator<User> itr = all.iterator();
+		while (itr.hasNext()) {
+			u = itr.next();
+			if (u.getApproved() == 0) {
+				users.add(u);
+			}	
+		}
+		return users;
+	}
+	
+	
 	
 
 }

@@ -409,7 +409,15 @@ function loadResolved(callback){
 
 //////////////////////////////////////////////////// ALL EMPLOYEES VIEW //////////////////////////////////////////////////////////////////////
 function loadEmployeesView(){
-
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			$('#managerView').html(xhr.responseText);
+			loadResolved(resolvedCallback);
+		}
+	}
+	xhr.open("GET", "employees.managerView", true);
+	xhr.send();	
 }
 
 //////////////////////////////////////////////////// PENDING EMPLOYEES VIEW //////////////////////////////////////////////////////////////////
