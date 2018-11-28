@@ -18,6 +18,7 @@ public class LogoutServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		log.debug("In logout servlet");
 		// Returns current session. If a session doesn't exist, does not create one
 		HttpSession session = req.getSession(false);		
 		if (session != null) {

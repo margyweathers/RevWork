@@ -19,10 +19,9 @@ SELECT * FROM REIMBURSEMENTS WHERE R_RESOLVER = 22 ORDER BY R_ID;
 SELECT * FROM USR;
 SELECT * FROM USR WHERE EMAIL = 'mweathers@gmail.com';
 SELECT EMAIL FROM USR;
-delete from reimbursements where r_id = 27;
-SELECT * FROM REIMBURSEMENTS ORDER BY R_ID;
+delete from reimbursements where r_id = 48;
+SELECT * FROM REIMBURSEMENTS ORDER BY R_ID DESC;
 update reimbursements set r_status = 1 where r_id = 4;
-delete from reimbursements where r_id = 3;
 
 -----------------------------STORED PROCEDURES----------------------------------
 CREATE OR REPLACE PROCEDURE GET_USR_EMAILS

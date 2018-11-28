@@ -9,48 +9,65 @@ window.onload = function(){
 	$('#pastNav').on('click', loadPastView);
 	$('#submitNav').on('click', loadSubmitView);
 }
-
+var user;
 function loadUser(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			user = JSON.parse(xhr.responseText);
-			console.log(user);
+			console.log(user)
+//			if (user == null){
+//				logout();
+//			}
 			// String interpolation doesn't work?
 //			$('#welcomeMessage').html(`Welcome, ${user.firstName}. Here are your pending reimbursement requests.`);
-			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.');
+			$('#welcomeMessage').html('<i>Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.</i>');
 		}
 	}
-	xhr.open("GET", "user-servlet", true);
+	xhr.open("POST", "user-servlet", true);
 	xhr.send();	
 }
 
-//Format's child rows. Used for all tables
+function logout(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log("in logout()");
+		}
+	}
+	xhr.open("POST", "logout", true);
+	xhr.send();
+}
+
+// Format's child rows. Used for all tables
 function format(d){   
-    // `d` is the original data object for the row
+	// `d` is the original data object for the row
 	// child rows for pending reimbursements
-	if (d.rStatus == 1){
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-            '<td>Description:</td>' +
-            '<td>' + d.rDesc + '</td>' +
-        '</tr>' +
-    '</table>'; 
+	if (d.rStatus == 1 || d.rStatus == "<i>Pending...</i>"){
+		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+		'<tr>' +
+		'<td>Description:</td>' +
+		'<td>' + d.rDesc + '</td>' +
+		'</tr>' +
+		'</table>'; 
 	}
 	// child rows for approved/denied reimbursements
 	else{
 		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-            '<td>Description:</td>' +
-            '<td>' + d.rDesc + '</td>' +
-        '</tr>' +
-        
-        '<tr>' +
-        '<td>Resolved By:</td>' +
-        '<td>' + d.rResolver + ' ('+ d.resolveDate + ')' + '</td>' +
-        '</tr>' +
-        
-    '</table>'; 
+		'<tr>' +
+		'<td>Description:</td>' +
+		'<td>' + d.rDesc + '</td>' +
+		'</tr>' +
+
+		'<tr>' +
+		'<td>Resolved By:</td>' +
+		'<td>' + d.rResolver + '</td>' +
+		'</tr>' +
+		'<tr>' +
+		'<td>Resolve Date:</td>' +
+		'<td>' + d.resolveDate + '</td>' +
+		'</tr>' +
+		'</table>'; 
 	}
 }
 
@@ -60,7 +77,9 @@ function loadFrontView(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			$('#employeeView').html(xhr.responseText);
-//			$('#welcomeMessage').html('Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.');
+			if (user != undefined){
+				$('#welcomeMessage').html('<i>Welcome, ' + user.firstName + '. Here are your pending reimbursement requests.</i>');	
+			}
 			loadPending(pendingCallback);
 		}
 	}
@@ -70,9 +89,10 @@ function loadFrontView(){
 
 // CODE TO POPULATE PENDING TABLE GOES HERE! Called by loadPending(callback) in loadFrontView() in window.onload();
 function pendingCallback(pending){
-	rdata = pending;		// Can this be global?
+	rdata = pending;
 	// Manipulate reimbursement objects to dynamically load types
 	getRType(rdata, typeCallback)
+	formatAmount(rdata);
 	console.log(rdata);
 	var table = $('#pending').DataTable({
 		"data": rdata,
@@ -93,7 +113,7 @@ function pendingCallback(pending){
 			{ "data": "rType" },
 			{ "data": "amount" },
 			],
-			"order": [[1, 'asc']]
+			"order": [[1, 'desc']]
 	});
 //	Add event listener for opening and closing details
 	$('#pending tbody').on('click', 'td.details-control', function () {
@@ -137,10 +157,27 @@ function loadPending(callback){
 	xhr.send();
 }
 
+//////////////////////////////////////////////////////////////////// FORMAT TABLES ///////////////////////////////////////////////////////////////////////////
+function formatAmount(rdata){
+	for (let r of rdata){
+		r.amount = "$" + (r.amount).toFixed(2);
+	}
+}
+
+function formatStatus(rdata){
+	for (let r of rdata){
+		var status = r.rStatus;
+		switch(status){
+		case 1: r.rStatus = "<i>Pending...</i>"; break;
+		case 2: r.rStatus = "Approved"; break;
+		case 3: r.rStatus = "Denied"; break;
+		}
+	}
+}
+
 // Reimbursement Type callback function
 function typeCallback(data, types){
 	for (let r of data){
-		console.log((types[r.rType-1]).type);
 		r.rType = (types[r.rType-1]).type;
 	}
 	rdata = data;
@@ -154,7 +191,28 @@ function getRType(rdata, callback){
 			if(callback) callback(rdata, types);
 		}
 	}
-	xhr.open("GET", "r-type", true);
+	xhr.open("GET", "r-type", false);	// ...Create a data transfer object instead if time permits...
+	xhr.send();
+}
+
+function getManagerName(rdata){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let managers = JSON.parse(xhr.responseText);
+			console.log(managers)
+			for (r of rdata){
+				for (m of managers){
+					if (r.rResolver == m.userId){
+						r.rResolver = m.firstName + " " + m.lastName + " (<a href=\"#\"><i>" + m.email + "</i></a>)";
+						break;
+					}
+				}
+			}
+			console.log(rdata);
+		}
+	}
+	xhr.open("GET", "user-servlet", false);
 	xhr.send();
 }
 
@@ -175,7 +233,10 @@ function loadAllView(){
 function allCallback(all){
 	var rdata = all;
 	// Manipulate reimbursement objects to dynamically load types
-//	getRType(rdata, TypeCallback)
+	getRType(rdata, typeCallback)
+	formatAmount(rdata);
+	formatStatus(rdata);
+	getManagerName(rdata);
 	var table = $('#all').DataTable({
 		"data": rdata,
 		retrieve: true,
@@ -191,12 +252,12 @@ function allCallback(all){
 				},
 				width:"15px"
 			},
+			{ "data": "submitDate" },
 			{ "data": "rType" },
 			{ "data": "amount" },
-			{ "data": "rStatus" },
-			{ "data": "submitDate"}
+			{ "data": "rStatus"}
 			],
-			"order": [[1, 'asc']]
+			"order": [[1, 'desc']]
 	});
 //	Add event listener for opening and closing details
 	$('#all tbody').on('click', 'td.details-control', function () {
@@ -240,10 +301,91 @@ function loadAll(callback){
 }
 
 
-
+//////////////////////////////////////////////////////// PAST VIEW /////////////////////////////////////////////////////////////////
 function loadPastView(){
-	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			$('#employeeView').html(xhr.responseText);
+			loadPast(pastCallback);
+		}
+	}
+	xhr.open("GET", "past.employeeView", true);
+	xhr.send();	
 }
+//POPULATE 'ALL' TABLE
+function pastCallback(all){
+	var rdata = all;
+	// Manipulate reimbursement objects to dynamically load types
+	getRType(rdata, typeCallback)
+	formatAmount(rdata);
+	formatStatus(rdata);
+	getManagerName(rdata);
+	var table = $('#past').DataTable({
+		"data": rdata,
+		retrieve: true,
+		select:"single",
+		"columns": [
+			{
+				"className": 'details-control',
+				"orderable": false,
+				"data": null,
+				"defaultContent": '',
+				"render": function () {
+					return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+				},
+				width:"15px"
+			},
+			{ "data": "submitDate" },
+			{ "data": "rType" },
+			{ "data": "amount" },
+			{ "data": "rStatus"}
+			],
+			"order": [[1, 'desc']]
+	});
+//	Add event listener for opening and closing details
+	$('#past tbody').on('click', 'td.details-control', function () {
+		var tr = $(this).closest('tr');
+		var tdi = tr.find("i.fa");
+		var row = table.row(tr);
+
+		if (row.child.isShown()) {
+			// This row is already open - close it
+			row.child.hide();
+			tr.removeClass('shown');
+			tdi.first().removeClass('fa-minus-square');
+			tdi.first().addClass('fa-plus-square');
+		}
+		else {
+			// Open this row
+			row.child(format(row.data())).show();
+			tr.addClass('shown');
+			tdi.first().removeClass('fa-plus-square');
+			tdi.first().addClass('fa-minus-square');
+		}
+	});
+
+	table.on("user-select", function (e, dt, type, cell, originalEvent) {
+		if ($(cell.node()).hasClass("details-control")) {
+			e.preventDefault();
+		}
+	});	
+}
+
+function loadPast(callback){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var all = JSON.parse(xhr.responseText);
+			if(callback) callback(all);		// if statement checks if function param exists
+		}
+	}
+	xhr.open("POST", "get-past-by-author", true);
+	xhr.send();
+}
+
+
+
 
 //////////////////////////////////////////////////////// SUBMIT VIEW /////////////////////////////////////////////////////////////
 function loadSubmitView(){
@@ -274,7 +416,7 @@ function loadRTypes(){
 			}			
 		}		
 	}
-	xhr.open("POST", "r-type", true);	
+	xhr.open("GET", "r-type", true);	
 	xhr.send();
 }
 
@@ -307,13 +449,11 @@ function loadSubmittedView(t,a,d){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log("are these variables being passed?");
-			console.log(t);
-			console.log(a);
-			console.log(d);
 			$('#employeeView').html(xhr.responseText);
-			$('rType-confirmation').html(t);
-			$('amount-confirmation').html(a);
+			console.log("are these variables being passed?");
+			a = "$" + a.toFixed(2);
+			$('#submitMessage').html("<i>Your </i>" + a + " <i>reimbursement request for</i> " + t + " <i>is awaiting manager approval...</i?");
+			
 		}
 	}
 	xhr.open("GET", "request-submitted.employeeView", true);

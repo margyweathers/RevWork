@@ -69,10 +69,11 @@ public class ReimbursementService {
 		Iterator<Reimbursement> itr = all.iterator();
 		while(itr.hasNext()) {
 			r = itr.next();
-			if (r.getrStatus() == 2 || r.getrType() == 3) {
+			if (r.getrStatus() == 2 || r.getrStatus() == 3) {
 				past.add(r);
 			}
-		}		
+		}
+		log.debug(past);
 		return past;
 	}
 	

@@ -43,6 +43,52 @@ public class UserDao {
 		return users;	// If null, handle in service layer
 	}
 	
+	public List<User> safeFindAll(){
+		List<User> users = new ArrayList<User>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "SELECT * FROM USR";
+			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				User u = new User();
+				u.setUserId(rs.getInt(1));
+				u.setEmail(rs.getString(2));
+				u.setFirstName(rs.getString(4));
+				u.setLastName(rs.getString(5));
+				u.setRoll(rs.getInt(6));
+				u.setApproved(rs.getInt(7));
+				users.add(u);
+			}					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return users;	// If null, handle in service layer
+	}
+	
+	
+	public User findById(int id) {
+		User u = null;
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			String sql = "SELECT * FROM USR WHERE USER_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);		// Prepared Statement
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				u = new User();
+				u.setUserId(rs.getInt(1));
+				u.setEmail(rs.getString(2));
+				u.setPwd(rs.getString(3));
+				u.setFirstName(rs.getString(4));
+				u.setLastName(rs.getString(5));
+				u.setRoll(rs.getInt(6));
+				u.setApproved(rs.getInt(7));
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return u;	// Returns null if email does not exist in DB		
+	}
+	
 	/**
 	 * 
 	 * @param email: unique username for users

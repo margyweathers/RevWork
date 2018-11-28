@@ -12,6 +12,9 @@ import com.re.proj1.pojos.Reimbursement;
 import com.re.proj1.util.ConnectionFactory;
 
 public class ReimbursementDao {
+	
+	private RTypeDao typeDao = new RTypeDao();
+	private UserDao uDao = new UserDao();
 
 	public Reimbursement findById(int id) {
 		Reimbursement r = null;
@@ -31,14 +34,12 @@ public class ReimbursementDao {
 				r.setrType(rs.getInt(7));
 				r.setrDesc(rs.getString(8));
 				r.setrStatus(rs.getInt(9));
-			}
-			
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 		return r;
 	}
-
 	
 	/**
 	 * 
@@ -47,7 +48,7 @@ public class ReimbursementDao {
 	public List<Reimbursement> findAll(){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM REIMBURSEMENTS ORDER BY R_ID";
+			String sql = "SELECT * FROM REIMBURSEMENTS ORDER BY R_ID DESC";
 			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {
@@ -72,7 +73,7 @@ public class ReimbursementDao {
 	public List<Reimbursement> findAllPending(){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_STATUS = 1 ORDER BY R_ID";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_STATUS = 1 ORDER BY R_ID DESC";
 			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {
@@ -97,7 +98,7 @@ public class ReimbursementDao {
 	public List<Reimbursement> findAllPast(){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_STATUS = 2 OR R_STATUS = 3 ORDER BY R_ID";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_STATUS = 2 OR R_STATUS = 3 ORDER BY R_ID DESC";
 			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {
@@ -122,7 +123,7 @@ public class ReimbursementDao {
 	public List<Reimbursement> findByAuthorId(int author){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM REIMBURSEMENTS WHERE AUTHOR = ? ORDER BY R_ID";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE AUTHOR = ? ORDER BY R_ID DESC";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, author);
 			ResultSet rs = ps.executeQuery();
@@ -148,7 +149,7 @@ public class ReimbursementDao {
 	public List<Reimbursement> findByResolverId(int resolver){
 		List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_RESOLVER = ? ORDER BY R_ID";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE R_RESOLVER = ? ORDER BY R_ID DESC";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, resolver);
 			ResultSet rs = ps.executeQuery();

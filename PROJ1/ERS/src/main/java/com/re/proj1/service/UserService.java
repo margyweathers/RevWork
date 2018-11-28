@@ -50,6 +50,11 @@ public class UserService {
 		return users;
 	}
 	
+	public List<User> safeGetAllUsers(){
+		List<User> users = ud.safeFindAll();
+		return users;
+	}
+	
 	public List<User> getAllUsersExcludeCurrent(int current){
 		List<User> users = this.getAllUsers();
 		User u = null;
