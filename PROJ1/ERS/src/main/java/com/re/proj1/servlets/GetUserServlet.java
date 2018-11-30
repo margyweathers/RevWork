@@ -24,7 +24,8 @@ public class GetUserServlet extends HttpServlet{
 	
 	private static Logger log = Logger.getLogger(GetUserServlet.class);
 	private static UserService us = new UserService();
-	
+
+	// For login
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -48,7 +49,8 @@ public class GetUserServlet extends HttpServlet{
 //		}
 		
 	}
-	
+
+	// Getting a list of all users
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<User> users = new ArrayList<User>();

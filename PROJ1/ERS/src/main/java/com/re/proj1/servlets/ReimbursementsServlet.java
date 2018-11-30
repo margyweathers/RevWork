@@ -45,7 +45,7 @@ public class ReimbursementsServlet extends HttpServlet{
 				reimbs = rs.getPastReimbursementsByAuthor(user.getUserId());
 				break;
 			case "/ERS/get-all-by-author":
-				reimbs = rs.getAllReimbursements();
+				reimbs = rs.getReimbursementsByAuthor(user.getUserId());
 				break;
 			case "/ERS/get-all-pending":
 				reimbs = rs.getAllPendingReimbursements();

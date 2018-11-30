@@ -9,7 +9,8 @@ window.onload = function(){
 	$('#pastNav').on('click', loadPastView);
 	$('#submitNav').on('click', loadSubmitView);
 }
-var user;
+
+var user;	// declare user here so it is not undefined elsewhere
 function loadUser(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -90,7 +91,7 @@ function loadFrontView(){
 // CODE TO POPULATE PENDING TABLE GOES HERE! Called by loadPending(callback) in loadFrontView() in window.onload();
 function pendingCallback(pending){
 	rdata = pending;
-	// Manipulate reimbursement objects to dynamically load types
+	// Manipulate reimbursement objects to dynamically load display info
 	getRType(rdata, typeCallback)
 	formatAmount(rdata);
 	console.log(rdata);
@@ -209,7 +210,6 @@ function getManagerName(rdata){
 					}
 				}
 			}
-			console.log(rdata);
 		}
 	}
 	xhr.open("GET", "user-servlet", false);
@@ -452,7 +452,7 @@ function loadSubmittedView(t,a,d){
 			$('#employeeView').html(xhr.responseText);
 			console.log("are these variables being passed?");
 			a = "$" + a.toFixed(2);
-			$('#submitMessage').html("<i>Your </i>" + a + " <i>reimbursement request for</i> " + t + " <i>is awaiting manager approval...</i?");
+			$('#submitMessage').html("<i>Your </i>" + a + " <i>reimbursement request for</i> \"" + d + "\" <i>is awaiting manager approval...</i?");
 			
 		}
 	}

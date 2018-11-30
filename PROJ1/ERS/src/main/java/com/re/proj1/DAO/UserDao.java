@@ -23,7 +23,7 @@ public class UserDao {
 	public List<User> findAll(){
 		List<User> users = new ArrayList<User>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM USR";
+			String sql = "SELECT * FROM USR ORDER BY LASTNAME";
 			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {
@@ -42,11 +42,15 @@ public class UserDao {
 		}	
 		return users;	// If null, handle in service layer
 	}
-	
+
+	/**
+	 * 
+	 * @return List of all users, keeping all passwords null for security. Null if there are no users in the DB
+	 */
 	public List<User> safeFindAll(){
 		List<User> users = new ArrayList<User>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "SELECT * FROM USR";
+			String sql = "SELECT * FROM USR ORDER BY LASTNAME";
 			Statement statement = conn.createStatement();	// Statement... Potential for SQL injection
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {

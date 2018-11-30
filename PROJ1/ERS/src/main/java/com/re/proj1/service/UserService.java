@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	public List<User> getAllUsersExcludeCurrent(int current){
-		List<User> users = this.getAllUsers();
+		List<User> users = this.safeGetAllUsers();		// Will send back users with null password
 		User u = null;
 		Iterator<User> itr = users.iterator();
 		while (itr.hasNext()) {
@@ -67,8 +67,7 @@ public class UserService {
 		}
 		return users;
 	}
-	
-	
+		
 	public List<User> getAllPendingUsers(){
 		User u = null;
 		List<User> users = new ArrayList<User>();
